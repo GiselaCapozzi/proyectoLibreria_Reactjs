@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Marker+Hatch&display=swap');
+
+:root{
+  --color-principal: #14080E;
+  --color-border: #49475B;
+  --color-texto: #E9EB9E;
+}
+
+.navbar{
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: .2px solid var(--color-border);
+  box-shadow: .3px .3px 17px var(--color-principal);
+  color: var(--color-texto);
+  background-color: var(--color-principal);
+}
+
+.nav_logo{
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav_iconos span{
+  margin: 25px;
+}
+
+.nav_iconos span a {
+  color: var(--color-texto);
+  font-size: large;
+}
+
+.nav_iconos span a:hover {
+  color: #ACC196;
+}
+
+.nav_logo img {
+  width: 60px;
+  height: 60px;
+}
+
+.nav_logo h3 {
+  color: var(--color-texto);
+  font-family: 'Rubik Marker Hatch', cursive;
+}
+
+.nav_items a{
+  margin: 15px;
+  color: var(--color-texto);
+  position: relative;
+  text-decoration: none;
+}
+
+.nav_toggle{
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav_items{
+      position: absolute;
+      top: 70px;
+      left: 0;
+      background: var(--color-principal);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: -webkit-fill-available;        
+      transform: translateX(-100%);
+      /* transition: 0.1s ease all; */
+  }
+  .nav_items.open{
+      transform: translateX(0) !important
+  }
+  .nav_toggle{
+      display: flex !important;
+      flex-direction: column;                
+      margin: 15px;
+  }
+  .nav_toggle span{
+      width: 30px;
+      height: 4px;
+      background: var(--color-texto);
+      margin-bottom: 5px;
+      border-radius: 2px;             
+      transform-origin: 5px 0px;
+      transition: all 0.1s linear;
+  }
+  .nav_toggle.open > span{
+      transform: rotate(45deg) translate(0px, 0px);
+  }
+  .nav_toggle.open > span:nth-child(2){
+      display: none;
+  }
+  .nav_toggle.open > span:nth-child(3){
+      transform: rotate(-45deg) translate(-5px, 1px);
+  }
+
+  .nav_logo h3 {
+    display: none;
+  }
+
+  .nav_items a {
+    margin: 5px;
+  }
+
+  .nav_iconos span{
+    margin: 10px;
+      
+  }
+}

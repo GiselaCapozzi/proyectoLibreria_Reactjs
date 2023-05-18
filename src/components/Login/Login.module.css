@@ -1,0 +1,18 @@
+#contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;;
+}
+
+.login {
+  width: 30rem;
+  height: auto;
+  border: 2px solid #A5668B;
+  padding: 75px;
+  background-color: #0E103D;
+}
+
+div input[type='email'], div input[type='password'] {
+  background-color: #F2D7EE;
+};
