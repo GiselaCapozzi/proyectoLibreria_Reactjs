@@ -5,13 +5,15 @@ import { Routes, Route } from 'react-router-dom';
 
 
 import Nav from './components/Nav/Nav';
-import Login from './components/Login/Login';
+// import Login from './components/Login/Login';
+import Categoria from './components/Categoria/Categoria';
 
 function App() {
 
   return (
     <div>
       <Nav />
+      <Categoria />
       {/* <Routes>
         <Route path='/login' element={<Login />} />
       </Routes> */}
