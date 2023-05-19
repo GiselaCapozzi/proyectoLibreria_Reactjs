@@ -13,7 +13,7 @@
 .login {
   border: 2px solid var(--color-texto);
   background-color: var(--color-fondo);
-  height: 70vh;
+  height: 85vh;
   width: 350px;
   color: var(--color-texto);
   padding: 15px;
@@ -55,5 +55,76 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 35px 0;
+  margin: 20px 0;
+}
+
+.loguearse {
+  /* width: 15rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 12px;
+}
+
+.btn_login {
+  width: 18rem;
+}
+
+.log_options {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  margin: 30px 4rem;
+  width: 12rem;
+}
+
+.log_account {
+  display: inline;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.log_reset {
+  display: inline;
+  text-align: center;
+  margin-bottom: 7px;
+}
+
+.log_reset p {
+  display: inline;
+}
+
+.log_account p {
+  display: inline;
+}
+
+.log_account span {
+  margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .login {
+    width: 250px;
+    height: 80vh;
+  }
+
+  .btn_login {
+    width: 13rem;
+  }
+
+  .loguearse {
+    margin: 5px;
+  }
+
+  .log_reset {
+    margin-bottom: 0px;
+  }
+  
+  .log_options {
+    margin: 10px 1rem;
+    width: 12rem;
+  }
 }
