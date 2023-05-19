@@ -1,6 +1,7 @@
 import style from './Login.module.css';
 import google from '../../assets/google.png';
 import facebook from '../../assets/facebook.png';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -20,6 +21,23 @@ const Login = () => {
         </div>
         <div className={style.separador}>
           <h5>or</h5>
+        </div>
+        <div className={style.loguearse}>
+          <div className={`input-group mb-3`}>
+            <input type="email" name="" id="" className={`form-control`} placeholder="Email" aria-label='Email' aria-describedby='basic-addon1' />
+            <span className={`input-group-text`}><i className='bi bi-at'></i></span>
+          </div>
+          <div className={`input-group mb-3`}>
+            <input type="password" name="" id="" className={`form-control`} placeholder="Password" aria-label='Password' aria-describedby='basic-addon2' />
+            <span className={`input-group-text`}><i className='bi bi-key'></i></span>
+          </div>
+          <button className={`btn btn-primary ${style.btn_login}`}>Log in</button>
+        </div>
+        <div className={`${style.log_options}`}>
+          <Link className={`${style.log_reset}`}><p>Reset Password?</p></Link>
+          <div className={style.log_account}>
+            <p>Not account?</p><Link className={`${style.log_create}`}><span>Create one</span></Link>
+          </div>
         </div>
       </div>
     </div>
