@@ -5,17 +5,16 @@ import { Routes, Route } from 'react-router-dom';
 
 
 import Nav from './components/Nav/Nav';
-// import Login from './components/Login/Login';
-import Categorias from './container/Categorias/Categorias';
+import Login from './container/Login/Login';
 
 function App() {
 
   return (
     <div>
       <Nav />
-      {/* <Routes>
+      <Routes>
         <Route path='/login' element={<Login />} />
-      </Routes> */}
+      </Routes>
     </div>
   )
 }

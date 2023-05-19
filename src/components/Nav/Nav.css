@@ -18,6 +18,13 @@
   background-color: var(--color-principal);
 }
 
+.logo_titulo {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 .nav_logo{
   font-weight: bold;
   font-size: 20px;
@@ -48,6 +55,7 @@
 .nav_logo h3 {
   color: var(--color-texto);
   font-family: 'Rubik Marker Hatch', cursive;
+  margin-top: 12px;
 }
 
 .nav_items a{
