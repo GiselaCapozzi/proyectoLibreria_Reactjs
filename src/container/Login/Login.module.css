@@ -1,0 +1,59 @@
+:root {
+  --color-fondo: #14080E;
+  --color-texto:  #E9EB9E;
+}
+
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 89vh;
+}
+
+.login {
+  border: 2px solid var(--color-texto);
+  background-color: var(--color-fondo);
+  height: 70vh;
+  width: 350px;
+  color: var(--color-texto);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.redes {
+  margin-top: 20px;
+}
+
+.boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boton button {
+  margin: 7px;
+  width: 15rem;
+}
+
+.btn_imagen {
+  width: 30px;
+  height: 30px;
+  margin-left: 12px;
+}
+
+.btn_google {
+  padding: 0;
+  text-align: center;
+}
+
+.btn_facebook {
+  padding: 0;
+  text-align: center;
+}
+
+.separador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 35px 0;
+}

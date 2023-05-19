@@ -12,8 +12,10 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="nav_logo">
+        <Link to='/' className='logo_titulo'>
         <img src={logo} alt="logo" />
         <h3>Cosmos</h3>
+        </Link>
       </div>
       <div className={`nav_items ${isOpen && "open"}`}>
         <Link className={`nav_categorias ${show} && 'show'`} onMouseLeave={() => setShow(!show)} href="#">
@@ -27,7 +29,7 @@ const Navbar = () => {
       </div>
       <div className='nav_iconos'>
         <span><Link><i className='bi bi-search'></i></Link></span>
-        <span><Link><i className='bi bi-person-circle'></i></Link></span>
+        <span><Link to='/login'><i className='bi bi-person-circle'></i></Link></span>
         <span><Link><i className='bi bi-cart'></i></Link></span>
       </div>
       <div className={`nav_toggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)} >
