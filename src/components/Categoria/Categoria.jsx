@@ -1,10 +1,14 @@
 import style from './Categoria.module.css';
 
-const Categoria = () => {
+const Categoria = props => {
+  // console.log(imagen, nombre)
+  console.log(props)
   return (
     <div className={style.container}>
-        <img className={style.imagen} src='https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg' alt="arqui" />
-        <h3 className={style.titulo}>Arte, Arquitectura y Diseño</h3>
+      <img className={style.imagen} src={props.imagen} alt={props.nombre} />
+      <div className={style.cont_titulo}>
+        <h3 className={style.titulo}>{props.nombre}</h3>
+      </div>
     </div>
   )
 }

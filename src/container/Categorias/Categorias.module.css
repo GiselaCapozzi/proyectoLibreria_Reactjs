@@ -1,0 +1,35 @@
+:root {
+  --color-principal: #14080E;
+  --color-secundario: #49475B;
+}
+
+.tarjeta {
+  display: flex;
+  cursor: pointer;
+  /* justify-content: center; */
+  overflow-y: hidden;
+  overflow-x: scroll;
+  width: 100vw;
+  top: 30px;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-principal) var(--color-secundario);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-secundario);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-principal);
+  border-radius: 20px;
+  border: 3px solid var(--color-secundario);
+}

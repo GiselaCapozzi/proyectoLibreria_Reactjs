@@ -26,7 +26,7 @@ export const categorias = [
   },
   {
     id: 6,
-    nombre: 'Enciclopedias, Diccionarios, Linguistica',
+    nombre: 'Enciclopedias, Diccionarios',
     imagen: 'https://cdn.pixabay.com/photo/2016/08/25/15/30/dictionary-1619740_960_720.jpg'
   },
   {

@@ -6,14 +6,13 @@ import { Routes, Route } from 'react-router-dom';
 
 import Nav from './components/Nav/Nav';
 // import Login from './components/Login/Login';
-import Categoria from './components/Categoria/Categoria';
+import Categorias from './container/Categorias/Categorias';
 
 function App() {
 
   return (
     <div>
       <Nav />
-      <Categoria />
       {/* <Routes>
         <Route path='/login' element={<Login />} />
       </Routes> */}

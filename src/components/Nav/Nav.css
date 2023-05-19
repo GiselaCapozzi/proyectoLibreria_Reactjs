@@ -57,6 +57,10 @@
   text-decoration: none;
 }
 
+.nav_items a:hover {
+  color: #ACC196;
+}
+
 .nav_toggle{
   display: none;
 }
@@ -112,5 +116,9 @@
   .nav_iconos span{
     margin: 10px;
       
+  }
+
+  .nav_categorias.open {
+    display: none;
   }
 }
