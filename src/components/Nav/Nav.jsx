@@ -18,17 +18,20 @@ const Navbar = () => {
         </Link>
       </div>
       <div className={`nav_items ${isOpen && "open"}`}>
-        <Link className={`nav_categorias ${show} && 'show'`} onMouseLeave={() => setShow(!show)} href="#">
+        {/* <Link className={`nav_categorias ${show} && 'show'`} onMouseLeave={() => setShow(!show)} href="#">
           CATEGORÍAS
           {
-            show && <Categorias />
+           show && <Categorias />
+           
           }
-        </Link>
-        <Link href="#">AUTORES</Link>
-        <Link href="#">EDITORIALES</Link>
+        </Link> */}
+        <Link to='/categorias' >CATEGORIAS</Link>
+        <Link to="/autores">AUTORES</Link>
+        <Link to='/editoriales' >EDITORIALES</Link>
+        <Link to="/nosotros">NOSOTROS</Link>
       </div>
       <div className='nav_iconos'>
-        <span><Link><i className='bi bi-search'></i></Link></span>
+        <span><Link to='/buscador'><i className='bi bi-search'></i></Link></span>
         <span><Link to='/login'><i className='bi bi-person-circle'></i></Link></span>
         <span><Link><i className='bi bi-cart'></i></Link></span>
       </div>
