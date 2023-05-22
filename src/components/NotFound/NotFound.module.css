@@ -1,0 +1,15 @@
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.contenedor img {
+  width: 30rem;
+  height: 30rem;
+}
+
+.contenedor p {
+  font-size: 10px;
+}

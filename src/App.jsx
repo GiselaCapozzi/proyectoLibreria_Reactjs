@@ -13,6 +13,7 @@ import Editoriales from './container/Editoriales/Editoriales';
 import Autores from './container/Autores/Autores';
 import Nosotros  from './container/Nosotros/Nosotros';
 import Buscador  from './container/Buscador/Buscador';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/autores' element={<Autores/>} />
         <Route path='/nosotros' element={<Nosotros/>} />
         <Route path='/buscador' element={<Buscador/>} />
+        <Route path='*' element={<NotFound />}/>
       </Routes>
       <Footer />
     </div>
