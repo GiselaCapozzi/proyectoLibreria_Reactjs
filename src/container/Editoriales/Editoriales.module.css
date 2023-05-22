@@ -1,0 +1,9 @@
+:root {
+    --color-principal: #14080E;
+    --color-secundario: #49475B;
+  }
+  
+  .tarjeta {
+    padding: 5px !important;
+  }
+  
