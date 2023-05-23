@@ -26,9 +26,9 @@
   flex-flow: row wrap;
 }
 
-.flex_end { 
-  -webkit-align-content: flex-end; 
-  align-content: flex-end; 
+.flex_end {
+  -webkit-align-content: flex-end;
+  align-content: flex-end;
 }
 
 .footer_novedades {
@@ -47,17 +47,27 @@
   align-items: center;
 }
 
+.suscribe label {
+  margin-right: 12px;
+}
+
 .suscribe input {
   width: 20rem;
+  height: 30px;
   margin-right: 5px;
   border-radius: 5px;
   border: none;
-  background-color: #749496;
+  background-color: #799496;
+  padding: 15px;
 }
 
 .suscribe input:focus {
-  background-color: #749496;
+  background-color: #799496;
   color: var(--color_letra);
+}
+
+.suscribe input::placeholder {
+  color: var(--color_linea);
 }
 
 .suscribe button {
@@ -135,12 +145,12 @@
   text-align: center;
 }
 
-.footer_contacto section p  a {
+.footer_contacto section p a {
   color: var(--color_letra);
   text-decoration: none;
 }
 
-.footer_contacto section p  a:hover {
+.footer_contacto section p a:hover {
   color: var(--color_links);
 }
 
@@ -151,20 +161,20 @@
   width: var(--ancho_seccion);
 }
 
-.footer_micuenta section p{
+.footer_micuenta section p {
   text-align: center;
 }
 
-.footer_micuenta section p:first-child{
-  font-size: 20px;  
+.footer_micuenta section p:first-child {
+  font-size: 20px;
 }
 
-.footer_micuenta section p a{
+.footer_micuenta section p a {
   color: var(--color_letra);
   text-decoration: none;
 }
 
-.footer_micuenta section p a:hover{
+.footer_micuenta section p a:hover {
   color: var(--color_links);
 }
 
@@ -189,15 +199,15 @@
 }
 
 .seguinos_logos img:nth-child(1) {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   margin: 0 3px;
 }
 
 .seguinos_logos img:nth-child(2) {
-  width: 35px;
-  height: 35px;
-  margin: 0 4px;
+  width: 30px;
+  height: 30px;
+  margin: 0 3px;
 }
 
 .footer_derechos {
@@ -214,4 +224,67 @@
   margin-top: 20px;
   text-align: center;
   font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .footer_novedades {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .footer_novedades h4 {
+    font-size: 12px;
+    width: 100vw;
+    text-align: center;
+  }
+
+  .suscribe input {
+    width: 12rem;
+    font-size: 14px;
+  }
+
+  .suscribe button {
+    width: 90px;
+    font-size: 12px;
+  }
+
+  .footer_categoria {
+    display: none;
+  }
+
+  .footer_seccion {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer_seccion div:nth-child(2) {
+    border-right: none;
+    border-bottom: var(--linea_borde);
+    width: 100vw;
+    font-size: 12px;
+  }
+  
+  .footer_seccion div:nth-child(3) {
+    border-right: none;
+    border-bottom: var(--linea_borde);
+    width: 100vw;
+    font-size: 12px;
+  }
+
+  .footer_micuenta section p:first-child {
+    font-size: 14px;
+  }
+
+  .footer_seguinos h5 {
+    font-size: 14px;
+  }
+
+  .seguinos_logos {
+    margin-bottom: 12px;
+  }
+
+  .footer_derechos h3 {
+    font-size: 10px;
+  }
 }

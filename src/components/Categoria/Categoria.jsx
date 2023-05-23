@@ -1,8 +1,6 @@
 import style from './Categoria.module.css';
 
 const Categoria = props => {
-  // console.log(imagen, nombre)
-  console.log(props)
   return (
     <div className={style.container}>
       <img className={style.imagen} src={props.imagen} alt={props.nombre} />

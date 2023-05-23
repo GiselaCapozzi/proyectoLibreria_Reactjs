@@ -15,9 +15,9 @@ export class Footer extends Component {
         <div className={`${style.flex_container} ${style.flex_end}`}>
           <div className={`${style.footer_novedades}`}>
             <h4>Recibir Novedades y Promociones</h4>
-            <div className={`${style.suscribe} form-floating mb-3`}>
-            <input className='form-control' type="email" id="floatingInput" placeholder='Email' />
-            <label htmlFor="floatingInput">Email</label>
+            <div className={`${style.suscribe}`}>
+            <label className='form-label' htmlFor='formControl'>Email</label>
+            <input className='form-control' type="email" id='formControl' placeholder='Email' />
             <button className='btn btn-primary'>Suscribirse</button>
             </div>
           </div>

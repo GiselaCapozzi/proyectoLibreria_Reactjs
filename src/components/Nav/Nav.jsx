@@ -13,19 +13,18 @@ const Navbar = () => {
     <div className="navbar">
       <div className="nav_logo">
         <Link to='/' className='logo_titulo'>
-        <img src={logo} alt="logo" />
-        <h3>Cosmos</h3>
+          <img src={logo} alt="logo" />
+          <h3>Cosmos</h3>
         </Link>
       </div>
       <div className={`nav_items ${isOpen && "open"}`}>
-        {/* <Link className={`nav_categorias ${show} && 'show'`} onMouseLeave={() => setShow(!show)} href="#">
+        <Link className={`nav_categorias ${show} && 'show'`} onMouseLeave={() => setShow(!show)}>
           CATEGORÍAS
           {
-           show && <Categorias />
-           
+            show && <Categorias />
           }
-        </Link> */}
-        <Link to='/categorias' >CATEGORIAS</Link>
+        </Link>
+        {/* <Link to='/categorias' >CATEGORIAS</Link> */}
         <Link to="/autores">AUTORES</Link>
         <Link to='/editoriales' >EDITORIALES</Link>
         <Link to="/nosotros">NOSOTROS</Link>
