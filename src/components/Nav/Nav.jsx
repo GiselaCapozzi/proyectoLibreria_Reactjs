@@ -18,10 +18,10 @@ const Navbar = () => {
         </Link>
       </div>
       <div className={`nav_items ${isOpen && "open"}`}>
-        <Link className={`nav_categorias ${show} && 'show'`} onMouseLeave={() => setShow(!show)}>
+        <Link className={`nav_categorias ${show} && 'show'`} onMouseLeave={() => setShow(!show)} href="#">
           CATEGORÍAS
           {
-            show && <Categorias />
+          show && <Categorias />
           }
         </Link>
         {/* <Link to='/categorias' >CATEGORIAS</Link> */}

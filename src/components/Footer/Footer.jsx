@@ -2,7 +2,7 @@ import { Component } from 'react';
 import style from './Footer.module.css';
 import { Link } from 'react-router-dom';
 
-import { categorias } from '../../data/categorias';
+import categorias  from '../../data/categorias';
 import instagram from '../../assets/instagram.png';
 import youtube from '../../assets/youtube.png';
 import facebook from '../../assets/facebook(1).png';
@@ -16,7 +16,6 @@ export class Footer extends Component {
           <div className={`${style.footer_novedades}`}>
             <h4>Recibir Novedades y Promociones</h4>
             <div className={`${style.suscribe}`}>
-            <label className='form-label' htmlFor='formControl'>Email</label>
             <input className='form-control' type="email" id='formControl' placeholder='Email' />
             <button className='btn btn-primary'>Suscribirse</button>
             </div>
