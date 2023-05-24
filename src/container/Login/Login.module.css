@@ -67,6 +67,27 @@
   margin: 12px;
 }
 
+.loguearse input {
+  border: none;
+}
+
+.loguearse span {
+  background-color: #799496;
+  color: #14080E;
+  border: none;
+}
+
+.loguearse input:focus {
+  background-color: #799496;
+  color: var(--color-texto);
+  border: none;
+}
+
+.loguearse input::placeholder {
+  background-color: #799496;
+  color: #49475b;
+}
+
 .btn_login {
   width: 18rem;
 }

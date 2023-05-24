@@ -1,11 +1,12 @@
 import style from './Categoria.module.css';
 
-const Categoria = props => {
+const Categoria = ({ nombre, imagen }) => {
+  console.log(nombre);
   return (
     <div className={style.container}>
-      <img className={style.imagen} src={props.imagen} alt={props.nombre} />
+      <img className={style.imagen} src={imagen} alt={nombre} />
       <div className={style.cont_titulo}>
-        <h3 className={style.titulo}>{props.nombre}</h3>
+        <h3 className={style.titulo}>{nombre}</h3>
       </div>
     </div>
   )

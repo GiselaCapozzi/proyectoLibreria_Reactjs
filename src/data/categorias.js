@@ -1,4 +1,4 @@
-export const categorias = [
+const categorias = [
   {
     id: 1,
     nombre: 'Arte, Arquitectura y Diseño',
@@ -90,3 +90,5 @@ export const categorias = [
     imagen: 'https://cdn.pixabay.com/photo/2014/07/02/09/52/mosaic-382019_960_720.jpg'
   }
 ]
+
+export default categorias;
