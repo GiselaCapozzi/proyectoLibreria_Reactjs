@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import categorias from '../../data/categorias';
-import Categoria from '../Categoria/Categoria';
+import MenuCategoria from '../MenuCategoria/MenuCategoria';
 import style from './Categorias.module.css';
 
 export class Categorias extends Component {
@@ -9,7 +9,7 @@ export class Categorias extends Component {
       <div className={style.tarjeta}>
         {
           categorias.map(categoria => (
-            <Categoria 
+            <MenuCategoria 
               key={categoria.id}
               nombre={categoria.nombre}
               imagen={categoria.imagen}

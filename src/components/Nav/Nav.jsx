@@ -21,7 +21,7 @@ const Navbar = () => {
         <ul className={`menu`}>
           <li><Link className={`nav_categorias ${show} && 'show'`}>CATEGORÍAS</Link>
             <ul className={`submenu`}>
-              <li><Link><Categorias /></Link></li>
+              <li><Categorias /></li>
               <li><Link>TODAS LAS CATEGORIAS</Link></li>
             </ul>
           </li>

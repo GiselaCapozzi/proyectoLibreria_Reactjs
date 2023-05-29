@@ -8,7 +8,7 @@ import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import Login from './container/Login/Login';
 import Home from './container/Home/Home';
-import Categorias from './container/Categorias/Categorias'
+import Categoria from './container/Categoria/Categoria';
 import Editoriales from './container/Editoriales/Editoriales';
 import Autores from './container/Autores/Autores';
 import Nosotros  from './container/Nosotros/Nosotros';
@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login />} />
-        <Route path='/categorias' element={<Categorias/>} />
+        <Route path='/categoria/:categoria' element={<Categoria/>} />
         <Route path='/editoriales' element={<Editoriales />} />
         <Route path='/autores' element={<Autores/>} />
         <Route path='/nosotros' element={<Nosotros/>} />
