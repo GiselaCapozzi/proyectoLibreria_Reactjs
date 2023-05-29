@@ -1,6 +1,7 @@
 :root {
   --color-principal: #14080E;
   --color-secundario: #49475B;
+  --color-barra_desplazamiento: #799496;
 }
 
 .tarjeta {
@@ -16,7 +17,7 @@
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-principal) var(--color-secundario);
+  scrollbar-color: var(--color-barra_desplazamiento) var(--color-secundario);
 }
 
 /* Works on Chrome, Edge, and Safari */

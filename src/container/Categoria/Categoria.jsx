@@ -1,14 +1,10 @@
-import style from './Categoria.module.css';
+import { useParams } from 'react-router-dom';
 
-const Categoria = ({ nombre, imagen }) => {
-  console.log(nombre);
+const Categoria = () => {
+  const { categoria } = useParams(); 
+
   return (
-    <div className={style.container}>
-      <img className={style.imagen} src={imagen} alt={nombre} />
-      <div className={style.cont_titulo}>
-        <h3 className={style.titulo}>{nombre}</h3>
-      </div>
-    </div>
+    <div>{categoria}</div>
   )
 }
 

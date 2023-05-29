@@ -1,0 +1,43 @@
+:root {
+  --color-tarjeta: #49475b;
+  --color-texto: #e9eb9e;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  height: 200px;
+  border: 3px solid var(--color-tarjeta);
+  justify-content: center;
+}
+
+.container a {
+  list-style: none;
+  text-decoration: none;
+}
+
+.imagen {
+  filter: grayscale(100%);
+  object-fit: cover;
+  width: 180px;
+  height: 180px;
+}
+
+.imagen:hover {
+  filter: grayscale(0%);
+}
+
+.titulo {
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+  background-color: var(--color-tarjeta);
+  color: var(--color-texto);
+  height: 30px;
+  object-fit: cover;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
