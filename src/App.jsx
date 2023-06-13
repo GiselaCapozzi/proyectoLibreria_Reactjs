@@ -1,38 +1,42 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import { Routes, Route } from 'react-router-dom';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/authContext";
 
 // Componentes
-import Footer from './components/Footer/Footer';
-import Nav from './components/Nav/Nav';
-import Login from './container/Login/Login';
-import Home from './container/Home/Home';
-import Categoria from './container/Categoria/Categoria';
-import Editoriales from './container/Editoriales/Editoriales';
-import Autores from './container/Autores/Autores';
-import Nosotros  from './container/Nosotros/Nosotros';
-import Buscador  from './container/Buscador/Buscador';
-import NotFound from './components/NotFound/NotFound';
+import Footer from "./components/Footer/Footer";
+import Nav from "./components/Nav/Nav";
+import Login from "./container/Login/Login";
+import Home from "./container/Home/Home";
+import Categoria from "./container/Categoria/Categoria";
+import Editoriales from "./container/Editoriales/Editoriales";
+import Autores from "./container/Autores/Autores";
+import Nosotros from "./container/Nosotros/Nosotros";
+import Buscador from "./container/Buscador/Buscador";
+import NotFound from "./components/NotFound/NotFound";
+import Register from './container/Register/Register';
 
 function App() {
-
   return (
     <div>
-      <Nav />
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/categoria/:categoria' element={<Categoria/>} />
-        <Route path='/editoriales' element={<Editoriales />} />
-        <Route path='/autores' element={<Autores/>} />
-        <Route path='/nosotros' element={<Nosotros/>} />
-        <Route path='/buscador' element={<Buscador/>} />
-        <Route path='*' element={<NotFound />}/>
-      </Routes>
-      <Footer />
+      <AuthProvider>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/categoria/:categoria" element={<Categoria />} />
+          <Route path="/editoriales" element={<Editoriales />} />
+          <Route path="/autores" element={<Autores />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/buscador" element={<Buscador />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/register" element={<Register />}/>
+        </Routes>
+        <Footer />
+      </AuthProvider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
