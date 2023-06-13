@@ -7,6 +7,7 @@ const Login = () => {
   return (
     <div className={`container ${style.contenedor}`}>
       <div className={`${style.login}`}>
+      <h3 className={`${style.titulo}`}>Loguearse</h3>
         <div className={style.redes}>
           <div className={`${style.boton}`}>
             <button className={`btn btn-light ${style.btn_google}`}>
@@ -63,7 +64,7 @@ const Login = () => {
           </Link>
           <div className={style.log_account}>
             <p>¿Sin cuenta?</p>
-            <Link className={`${style.log_create}`}>
+            <Link to={'/register'} className={`${style.log_create}`}>
               <span>Crea una</span>
             </Link>
           </div>
