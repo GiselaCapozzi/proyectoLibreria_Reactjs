@@ -23,23 +23,34 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    var verifEmail = /\S+@\S+\.\S+/
+
     try {
       await signup(user.email, user.password);
       navigate('/')
     } catch (error) {
-      if (error.message === 'Firebase: Error (auth/invalid-email).') {
+      console.log(error.message)
+      console.log(e.target[1].value.length)
+      if (e.target[0].value === '') {
+        setError('El email no puede estar vacio')
+      } else if (e.target[1].value.length >= 1 || e.target[1].value.length <= 3) {
+        setError('La contraseña debe tener al menos 6 caracteres')
+      } else if (error.message === 'Firebase: Error (auth/invalid-email).' || verifEmail.test(e.target[0].value)) {
         setError('Email invalido')
-      } else {
-        setError(error.message)
+      } else if (error.message === 'Firebase: Error (auth/missing-password).' || e.target[1].value.length === 0) {
+        setError('La contraseña no puede estar vacia');
+      } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
+        setError('El email ya existe')
       }
     }
   };
+
 
   return (
     <div className={`container ${style.contenedor}`}>
       <div className={`${style.login}`}>
         <h3 className={`${style.titulo}`}>Registrarse</h3>
-        {error && <p className={`alert alert-warning`}>{error}</p>}
+        {error && <p className={`alert alert-warning text-center`}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className={style.loguearse}>
             <div className={`input-group mb-3`}>
