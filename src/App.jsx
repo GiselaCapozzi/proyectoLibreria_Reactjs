@@ -16,6 +16,7 @@ import Nosotros from "./container/Nosotros/Nosotros";
 import Buscador from "./container/Buscador/Buscador";
 import NotFound from "./components/NotFound/NotFound";
 import Register from './container/Register/Register';
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
@@ -23,7 +24,12 @@ function App() {
       <AuthProvider>
         <Nav />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/categoria/:categoria" element={<Categoria />} />
           <Route path="/editoriales" element={<Editoriales />} />
@@ -31,7 +37,7 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/buscador" element={<Buscador />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/register" element={<Register />}/>
+          <Route path="/register" element={<Register />} />
         </Routes>
         <Footer />
       </AuthProvider>

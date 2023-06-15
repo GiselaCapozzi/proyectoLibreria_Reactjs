@@ -1,9 +1,9 @@
 import { Component } from "react";
 
 export class Home extends Component {
-    render () {
+    render() {
         return (
-            <div className='container'> 
+            <div className='container'>
                 <span>Home</span>
             </div>
         )

@@ -14,7 +14,7 @@
 .login {
   border: 2px solid var(--color-texto);
   background-color: var(--color-fondo);
-  height: 85vh;
+  height: auto;
   width: 350px;
   color: var(--color-texto);
   padding: 15px;
@@ -140,7 +140,7 @@
 @media (max-width: 920px) {
   .login {
     width: 250px;
-    height: 85vh;
+    height: auto;
   }
 
   .btn_login {

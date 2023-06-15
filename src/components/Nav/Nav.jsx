@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
 import logo from '../../assets/Libro-viejo-15a6c78c.png';
 import "./Nav.css";
 
@@ -8,6 +9,19 @@ import Categorias from "../../container/Categorias/Categorias";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
+
+  const { user, logout, loading } = useAuth();
+  console.log(user)
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  if (loading) return <h1>Loading</h1>
 
   return (
     <div className="navbar">
@@ -31,9 +45,26 @@ const Navbar = () => {
         </ul>
       </div>
       <div className='nav_iconos'>
-        <span><Link to='/buscador'><i className='bi bi-search'></i></Link></span>
-        <span><Link to='/login'><i className='bi bi-person-circle'></i></Link></span>
-        <span><Link><i className='bi bi-cart'></i></Link></span>
+        <ul className="menu_session">
+          <li><Link to='/buscador'><i className='bi bi-search'></i></Link></li>
+          <li><i className='bi bi-person-circle'></i>
+            <ul className={`submenu_session`}>
+              {
+                user ? (
+                  <li><Link onClick={handleLogout}>Salir</Link></li>
+                ) : (
+                  <>
+                    <li><Link to='/login'>Inicia sesion</Link></li>
+                    <li><Link to='/register'>Registrarse</Link></li>
+                  </>
+                )
+              }
+
+
+            </ul>
+          </li>
+          <li><Link><i className='bi bi-cart'></i></Link></li>
+        </ul>
       </div>
       <div className={`nav_toggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)} >
         <span></span>
