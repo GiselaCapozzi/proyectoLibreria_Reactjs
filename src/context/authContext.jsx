@@ -8,7 +8,8 @@ import {
   signInWithPopup,
   sendPasswordResetEmail
 } from 'firebase/auth';
-import { auth } from '../firebase/InitConfig';
+import { auth, app } from '../firebase/InitConfig';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 export const authContext = createContext();
 
@@ -19,11 +20,25 @@ export const useAuth = () => {
 }
 
 export function AuthProvider({ children }) {
-
+  const firestore = getFirestore(app)
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password)
+  const signup = async (email, password, username, photoUser, rol) => {
+    const infoUsuario = await createUserWithEmailAndPassword(auth, email, password, username, photoUser)
+      .then((usuarioFirebase) => {
+        return usuarioFirebase;
+      });
+      
+      console.log(infoUsuario.user.uid);
+      const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
+      setDoc(docuRef, {
+        email: email,
+        username : username,
+        photoUser: photoUser,
+        rol: rol
+      })
+  }
 
   const login = (email, password) => signInWithEmailAndPassword(auth, email, password)
 
