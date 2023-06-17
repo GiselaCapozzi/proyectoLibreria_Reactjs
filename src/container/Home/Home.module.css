@@ -1,0 +1,20 @@
+:root {
+  --color-perfil:  #e0f0d0;
+  --color-contorno: #E9EB9E;
+}
+
+.bienvenido_user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 20px;
+}
+
+.photo_user {
+  width: 35px;
+  height: 35px;
+  background-color: var(--color-perfil);
+  border-radius: 100%;
+  border: 3px solid var(--color-contorno);
+  box-shadow: 5px 5px 10px var(--color-contorno);
+}
