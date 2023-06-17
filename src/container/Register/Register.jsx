@@ -9,6 +9,9 @@ const Register = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
+    username: "",
+    photoUser: "",
+    rol: 'usuario'
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -26,25 +29,15 @@ const Register = () => {
     var verifEmail = /\S+@\S+\.\S+/
 
     try {
-      await signup(user.email, user.password);
+      await signup(user.email, user.password, user.username, user.photoUser, user.rol);
       navigate('/')
     } catch (error) {
       console.log(error.message)
-      console.log(e.target[1].value.length)
-      if (e.target[0].value === '') {
-        setError('El email no puede estar vacio')
-      } else if (e.target[1].value.length >= 1 || e.target[1].value.length <= 3) {
-        setError('La contraseña debe tener al menos 6 caracteres')
-      } else if (error.message === 'Firebase: Error (auth/invalid-email).' || verifEmail.test(e.target[0].value)) {
-        setError('Email invalido')
-      } else if (error.message === 'Firebase: Error (auth/missing-password).' || e.target[1].value.length === 0) {
-        setError('La contraseña no puede estar vacia');
-      } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
-        setError('El email ya existe')
-      }
+      setError(error.message)
     }
   };
 
+  console.log(user)
 
   return (
     <div className={`container ${style.contenedor}`}>
@@ -75,6 +68,30 @@ const Register = () => {
               />
               <span className={`input-group-text`}>
                 <i className="bi bi-key"></i>
+              </span>
+            </div>
+            <div className={`input-group mb-3`}>
+              <input
+                type="file"
+                name="photoUser"
+                className={`form-control`}
+                placeholder="Foto de usuario"
+                onChange={handleChange}
+              />
+              <span className={`input-group-text`}>
+                <i className="bi bi-image"></i>
+              </span>
+            </div>
+            <div className={`input-group mb-3`}>
+              <input
+                type="text"
+                name="username"
+                className={`form-control`}
+                placeholder="Nombre de usuario"
+                onChange={handleChange}
+              />
+              <span className={`input-group-text`}>
+                <i className="bi bi-person-vcard"></i>
               </span>
             </div>
             <button className={`btn btn-primary ${style.btn_login}`}>
