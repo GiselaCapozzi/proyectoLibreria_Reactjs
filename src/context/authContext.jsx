@@ -24,8 +24,8 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email, password, username, photoUser, rol) => {
-    const infoUsuario = await createUserWithEmailAndPassword(auth, email, password, username, photoUser)
+  const signup = async (email, password, photouser, username, rol) => {
+    const infoUsuario = await createUserWithEmailAndPassword(auth, email, password, photouser, username)
       .then((usuarioFirebase) => {
         return usuarioFirebase;
       });
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
       setDoc(docuRef, {
         email: email,
         username : username,
-        photoUser: photoUser,
+        photouser: photouser,
         rol: rol
       })
   }

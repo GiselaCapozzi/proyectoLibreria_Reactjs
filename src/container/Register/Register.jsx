@@ -3,10 +3,13 @@ import style from "./Register.module.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from '../../firebase/InitConfig';
+import { v4 as  uuidv4} from 'uuid';
 
 const Register = () => {
-  const { signup } = useAuth();
-  const [user, setUser] = useState({
+  const { signup, user } = useAuth();
+  const [usuario, setUsuario] = useState({
     email: "",
     password: "",
     username: "",
@@ -14,22 +17,38 @@ const Register = () => {
     rol: 'usuario'
   });
   const [error, setError] = useState('');
+  // const [image, setImage] = useState('');
   const navigate = useNavigate();
 
   const handleChange = ({ target: { name, value } }) => {
-    setUser({
-      ...user,
+    setUsuario({
+      ...usuario,
       [name]: value,
     });
   };
+
+  const handleChangeImage = async (e) => {
+    const storageRef = ref(storage, `photoUser/${uuidv4()}`)
+    await uploadBytes(storageRef, e.target.files[0])
+      .then(snapshot => {
+        console.log(snapshot)
+      })
+    const imageUrl = await getDownloadURL(storageRef);
+    setUsuario({
+      ...usuario,
+      photoUser: imageUrl
+    })
+  }
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     var verifEmail = /\S+@\S+\.\S+/
-
     try {
-      await signup(user.email, user.password, user.username, user.photoUser, user.rol);
+      await signup(usuario.email, usuario.password, usuario.photoUser, usuario.username, usuario.rol);
+
       navigate('/')
     } catch (error) {
       console.log(error.message)
@@ -37,7 +56,7 @@ const Register = () => {
     }
   };
 
-  console.log(user)
+  console.log(usuario)
 
   return (
     <div className={`container ${style.contenedor}`}>
@@ -76,7 +95,7 @@ const Register = () => {
                 name="photoUser"
                 className={`form-control`}
                 placeholder="Foto de usuario"
-                onChange={handleChange}
+                onChange={handleChangeImage}
               />
               <span className={`input-group-text`}>
                 <i className="bi bi-image"></i>
