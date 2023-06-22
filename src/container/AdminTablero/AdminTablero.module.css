@@ -1,0 +1,21 @@
+:root {
+  --color-principal: #14080E;
+  --color-border: #49475B;
+  --color-texto: #E9EB9E;
+  --color-enlace:  #ACC196;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 0.8fr 5fr;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.registros {
+  border-right: 1px solid var(--color-border);
+  margin: 8px;
+  width: auto;
+  height: auto;
+}

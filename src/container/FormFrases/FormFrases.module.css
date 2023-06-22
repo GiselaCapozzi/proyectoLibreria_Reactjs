@@ -1,0 +1,38 @@
+:root {
+  --color-principal: #14080E;
+  --color-border: #49475B;
+  --color-texto: #E9EB9E;
+  --color-enlace:  #ACC196;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.formulario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form_autor, .form_frase{
+  width: 800px;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.boton  {
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.tabla_frases {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}

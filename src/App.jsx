@@ -12,7 +12,7 @@ import Home from "./container/Home/Home";
 import Categoria from "./container/Categoria/Categoria";
 import Editoriales from "./container/Editoriales/Editoriales";
 import Autores from "./container/Autores/Autores";
-import Nosotros from "./container/Nosotros/Nosotros";
+import AdminTablero from "./container/AdminTablero/AdminTablero";
 import Buscador from "./container/Buscador/Buscador";
 import NotFound from "./components/NotFound/NotFound";
 import Register from './container/Register/Register';
@@ -34,7 +34,7 @@ function App() {
           <Route path="/categoria/:categoria" element={<Categoria />} />
           <Route path="/editoriales" element={<Editoriales />} />
           <Route path="/autores" element={<Autores />} />
-          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/admin" element={<AdminTablero />} />
           <Route path="/buscador" element={<Buscador />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/register" element={<Register />} />
