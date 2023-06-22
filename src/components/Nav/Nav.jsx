@@ -1,21 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import logo from '../../assets/Libro-viejo-15a6c78c.png';
 import "./Nav.css";
 
 import Categorias from "../../container/Categorias/Categorias";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
 
+  const [usuario, setUsuario] = useState();
   const { user, logout, loading } = useAuth();
-  console.log(user)
+  const navigate = useNavigate();
+
+  const obtenerDatosUsuario = async () => {
+    const db = getFirestore();
+    const docRef = doc(db, 'usuarios', user.uid);
+    try {
+      await getDoc(docRef)
+        .then((res) => {
+          setUsuario(res.data())
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    obtenerDatosUsuario();
+  }, [user])
+
+  console.log(usuario)
 
   const handleLogout = async () => {
+    setUsuario({
+      username: '',
+      admin: false,
+      email: '',
+      photouser: ''
+    })
     try {
       await logout();
+      navigate('/login')
     } catch (error) {
       console.log(error.message)
     }
@@ -41,7 +69,9 @@ const Navbar = () => {
           </li>
           <li><Link to="/autores">AUTORES</Link></li>
           <li><Link to='/editoriales' >EDITORIALES</Link></li>
-          <li><Link to="/nosotros">NOSOTROS</Link></li>
+          {
+            usuario && usuario.admin === true ? <li><Link to="/admin">TABLERO ADMIN</Link></li> : null
+          }
         </ul>
       </div>
       <div className='nav_iconos'>

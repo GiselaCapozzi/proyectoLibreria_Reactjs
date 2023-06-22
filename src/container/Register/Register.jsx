@@ -14,7 +14,7 @@ const Register = () => {
     password: "",
     username: "",
     photoUser: "",
-    rol: 'usuario'
+    admin: false 
   });
   const [error, setError] = useState('');
   // const [image, setImage] = useState('');
@@ -40,14 +40,12 @@ const Register = () => {
     })
   }
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     var verifEmail = /\S+@\S+\.\S+/
     try {
-      await signup(usuario.email, usuario.password, usuario.photoUser, usuario.username, usuario.rol);
+      await signup(usuario.email, usuario.password, usuario.photoUser, usuario.username, usuario.admin);
 
       navigate('/')
     } catch (error) {

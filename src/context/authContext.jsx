@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email, password, photouser, username, rol) => {
+  const signup = async (email, password, photouser, username, admin) => {
     const infoUsuario = await createUserWithEmailAndPassword(auth, email, password, photouser, username)
       .then((usuarioFirebase) => {
         return usuarioFirebase;
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
         email: email,
         username : username,
         photouser: photouser,
-        rol: rol
+        admin: admin
       })
   }
 
