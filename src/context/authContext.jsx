@@ -19,6 +19,7 @@ export const useAuth = () => {
   return context;
 }
 
+
 export function AuthProvider({ children }) {
   const firestore = getFirestore(app)
   const [user, setUser] = useState(null);
@@ -59,6 +60,5 @@ export function AuthProvider({ children }) {
 
     return () => unsubscribe();
   })
-
   return <authContext.Provider value={{ signup, login, user, logout, loginWithGoogle, resetPassword }}>{children}</authContext.Provider>;
 }

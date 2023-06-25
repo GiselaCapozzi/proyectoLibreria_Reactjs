@@ -17,29 +17,31 @@ import Buscador from "./container/Buscador/Buscador";
 import NotFound from "./components/NotFound/NotFound";
 import Register from './container/Register/Register';
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
+import AllCategories from "./container/AllCategories/AllCategories";
 
 function App() {
   return (
     <div>
       <AuthProvider>
-        <Nav />
-        <Routes>
-          <Route path="/" element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/categoria/:categoria" element={<Categoria />} />
-          <Route path="/editoriales" element={<Editoriales />} />
-          <Route path="/autores" element={<Autores />} />
-          <Route path="/admin" element={<AdminTablero />} />
-          <Route path="/buscador" element={<Buscador />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-        <Footer />
+          <Nav />
+          <Routes>
+            <Route path="/" element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/categoria/:categoria" element={<Categoria />} />
+            <Route path="/editoriales" element={<Editoriales />} />
+            <Route path="/autores" element={<Autores />} />
+            <Route path="/admin" element={<AdminTablero />} />
+            <Route path="/buscador" element={<Buscador />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/allcategories" element={<AllCategories />}/>
+          </Routes>
+          <Footer />
       </AuthProvider>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import style from './FormFrases.module.css';
 import { app } from '../../firebase/InitConfig';
-import { getFirestore, doc, setDoc, getDocs, collection, query } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDocs, collection } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 
 const FormFrases = () => {

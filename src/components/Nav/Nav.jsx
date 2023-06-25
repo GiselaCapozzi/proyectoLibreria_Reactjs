@@ -64,7 +64,7 @@ const Navbar = () => {
           <li><Link className={`nav_categorias ${show} && 'show'`}>CATEGORÍAS</Link>
             <ul className={`submenu`}>
               <li><Categorias /></li>
-              <li><Link>TODAS LAS CATEGORIAS</Link></li>
+              <li><Link to={'/allcategories'}>TODAS LAS CATEGORIAS</Link></li>
             </ul>
           </li>
           <li><Link to="/autores">AUTORES</Link></li>

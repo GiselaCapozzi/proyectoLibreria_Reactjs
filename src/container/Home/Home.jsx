@@ -4,6 +4,7 @@ import { useAuth } from '../../context/authContext';
 import style from '../Home/Home.module.css';
 import CarouselImage from '../../components/Carousel/Carousel';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import CardFrase from '../CardFrase/CardFrase';
 
 const Home = () => {
 
@@ -54,6 +55,7 @@ console.log(usuario)
           className={`${style.photo_user}`}
         />
       </div>
+      <CardFrase />
     </div>
   )
 }

@@ -1,0 +1,58 @@
+:root {
+  --color-principal: #14080E;
+  --color-border: #49475B;
+  --color-texto: #E9EB9E;
+  --color-enlace:  #ACC196;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: auto;
+}
+
+.card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--color-border);
+  width: 300px;
+  height: 150px;
+  margin: 12px;
+  padding: 15px;
+}
+
+.texto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 30px 0;
+}
+
+.frase, .autor {
+  color: var(--color-texto);
+  text-align: center;
+}
+
+.frase {
+  font-weight: 300;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.autor {
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .card {
+    height: 85%;
+  }
+}
