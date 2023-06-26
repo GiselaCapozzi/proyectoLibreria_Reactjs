@@ -71,6 +71,7 @@ const handleResetPassword = async (e) => {
 }
 
   return (
+
     <div className={`container ${style.contenedor}`}>
       <div className={`${style.login}`}>
       <h3 className={`${style.titulo}`}>Loguearse</h3>
@@ -83,15 +84,15 @@ const handleResetPassword = async (e) => {
               <img className={`${style.btn_imagen}`} src={google} alt="" />
             </button>
           </div>
-          <div className={`${style.boton}`}>
+          {/* <div className={`${style.boton}`}>
             <button className={`btn btn-light ${style.btn_facebook}`}>
               Facebook
               <img className={`${style.btn_imagen}`} src={facebook} alt="" />
             </button>
-          </div>
+          </div> */}
         </div>
         <div className={style.separador}>
-          <h5>or</h5>
+          <h5>o</h5>
         </div>
         <form onSubmit={handleSubmit}>
         <div className={style.loguearse}>
@@ -127,7 +128,7 @@ const handleResetPassword = async (e) => {
             </span>
           </div>
           <button className={`btn btn-primary ${style.btn_login}`}>
-            Log in
+            Inicia sesión
           </button>
         </div>
         </form>

@@ -7,18 +7,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 89vh;
+  height: auto;
   z-index: 0;
 }
 
 .login {
   border: 2px solid var(--color-texto);
   background-color: var(--color-fondo);
-  height: 70vh;
+  height: auto;
   width: 550px;
   color: var(--color-texto);
   padding: 15px;
   border-radius: 12px;
+  margin-top: 25px;
 }
 
 .titulo {
@@ -90,10 +91,15 @@
   margin-left: 5px;
 }
 
+.log_account a span {
+  color: #799496;
+  list-style: none;
+}
+
 @media (max-width: 920px) {
   .login {
     width: 250px;
-    height: 75vh;
+    height: auto;
   }
 
   .btn_login {
@@ -105,11 +111,12 @@
   } */
   
   .log_options {
-    margin: 10px 1rem;
+    margin: 5px 1rem;
     width: 12rem;
   }
 
   .log_account {
     width: 200px;
+    margin-top: 0px;
   }
 }

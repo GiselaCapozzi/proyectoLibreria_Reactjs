@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import style from './CardFrase.module.css';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
-import { app } from '../../firebase/InitConfig';
 
 const CardFrase = () => {
 

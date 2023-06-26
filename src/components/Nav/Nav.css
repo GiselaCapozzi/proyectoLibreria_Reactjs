@@ -8,6 +8,11 @@
   --color-enlace:  #ACC196;
 }
 
+.fotoUsuario {
+  width: 20px;
+  height: 20px;
+}
+
 .menu>li {
   float: left;
   overflow: hidden;
