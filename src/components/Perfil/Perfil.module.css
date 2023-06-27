@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:root {
+  --color-principal: #14080E;
+  --color-border: #49475B;
+  --color-texto: #E9EB9E;
+  --color-enlace:  #ACC196;
+}
+
+.photouser {
+  width: 100px;
+  height: 100px;
+  margin: 15px 0;
+}
+
+.image_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.pencil_image {
+  display: flex;
+  position: absolute;
+  top: 150px;
+  left: 490px;
+  color: var(--color-texto);
+  font-size: 20px;
+}
+
+.email_container, .usuario_container {
+  margin-top: 15px;
+}
+
+input[type='file'] {
+  appearance: none;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  top: 900px;
+  z-index: 99;
+}
+
+.contenedor_btn_file {
+  display: inline-block;
+  /* position: relative; */
+  border: 0;
+  overflow: hidden;
+}
+
+.contenedor_btn_file input {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 150px;
+}
+
+.boton {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.sin_perfil {
+  text-align: center;
+}
+
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.contenedor img {
+  width: 30rem;
+  height: 30rem;
+}
+
+.contenedor p {
+  font-size: 10px;
+}
+
+@media (max-width: 768px) {
+  .pencil_image {
+    top: 150px;
+    left: 180px;
+  }
+}

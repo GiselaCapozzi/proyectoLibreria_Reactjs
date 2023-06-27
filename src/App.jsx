@@ -18,6 +18,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Register from './container/Register/Register';
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import AllCategories from "./container/AllCategories/AllCategories";
+import Perfil from "./components/Perfil/Perfil";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
             <Route path="/register" element={<Register />} />
             <Route path="/allcategories" element={<AllCategories />}/>
+            <Route path="/perfil"  element={<Perfil />}/>
           </Routes>
           <Footer />
       </AuthProvider>

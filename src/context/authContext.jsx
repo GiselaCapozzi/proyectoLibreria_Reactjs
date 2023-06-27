@@ -9,7 +9,7 @@ import {
   sendPasswordResetEmail
 } from 'firebase/auth';
 import { auth, app } from '../firebase/InitConfig';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
 export const authContext = createContext();
 
@@ -19,11 +19,30 @@ export const useAuth = () => {
   return context;
 }
 
-
 export function AuthProvider({ children }) {
   const firestore = getFirestore(app)
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [usuario, setUsuario] = useState();
+
+  const obtenerDatosUsuario = async () => {
+    const db = getFirestore();
+    const docRef = doc(db, 'usuarios', user.uid);
+    try {
+      await getDoc(docRef)
+      .then((res) => {
+        setUsuario(res.data())
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    obtenerDatosUsuario();
+  }, []);
+
+  console.log(usuario)
 
   const signup = async (email, password, photouser, username, admin) => {
     const infoUsuario = await createUserWithEmailAndPassword(auth, email, password, photouser, username)
@@ -60,5 +79,5 @@ export function AuthProvider({ children }) {
 
     return () => unsubscribe();
   })
-  return <authContext.Provider value={{ signup, login, user, logout, loginWithGoogle, resetPassword }}>{children}</authContext.Provider>;
+  return <authContext.Provider value={{ signup, login, user, logout, loginWithGoogle, resetPassword, usuario }}>{children}</authContext.Provider>;
 }
