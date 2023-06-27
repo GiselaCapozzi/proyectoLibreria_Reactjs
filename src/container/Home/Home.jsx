@@ -5,32 +5,37 @@ import style from '../Home/Home.module.css';
 import CarouselImage from '../../components/Carousel/Carousel';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import CardFrase from '../CardFrase/CardFrase';
+import { db } from '../../firebase/InitConfig';
 
 const Home = () => {
 
-  const { user } = useAuth();
   const [usuario, setUsuario] = useState();
-
+  const { user } = useAuth();
+  
   const obtenerDatosUsuario = async () => {
-    const db = getFirestore();
     const docRef = doc(db, 'usuarios', user.uid);
     try {
-      await getDoc(docRef)
-      .then((res) => {
-        setUsuario(res.data())
-      })
+      const docSnap = await getDoc(docRef);
+      setUsuario(docSnap.data()); 
     } catch (error) {
       console.log(error)
     }
+    // try {
+    //   await getDoc(docRef)
+    //   .then((res) => {
+    //     setUsuario(res.data())
+    //   })
+    // } catch (error) {
+    //   console.log(error)
+    // }
   }
+console.log(usuario);
 
   useEffect(() => {
     obtenerDatosUsuario();
   }, []);
 
   const date = new Date;
-  console.log(date.getHours())
-
   let saludo; 
   switch (date.getHours()) {
     case 12:

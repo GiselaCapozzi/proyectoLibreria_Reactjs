@@ -37,14 +37,14 @@
   margin-top: 15px;
 }
 
-input[type='file'] {
+/* input[type='file'] {
   appearance: none;
   display: none;
   visibility: hidden;
   opacity: 0;
   top: 900px;
   z-index: 99;
-}
+} */
 
 .contenedor_btn_file {
   display: inline-block;
