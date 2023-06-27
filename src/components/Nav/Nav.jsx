@@ -69,7 +69,7 @@ const Navbar = () => {
           </li>
           <li><Link to="/autores">AUTORES</Link></li>
           <li><Link to='/editoriales' >EDITORIALES</Link></li> */}
-          <li><Link to="/autores">BUSCADOR DELIBROS</Link></li>
+          <li><Link to="/autores">BUSCADOR DE LIBROS</Link></li>
           {
             usuario && usuario.admin === true ? <li><Link to="/admin">TABLERO ADMIN</Link></li> : null
           }
