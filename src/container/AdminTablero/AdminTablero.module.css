@@ -45,6 +45,27 @@
   margin-right: 12px;
 }
 
+.boton_cerrar {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  justify-content: flex-end;
+  margin-right: 5rem;
+}
+
 .tabla {
   margin: 50px 0px 100px 50px;
+}
+
+.titulo_tablero {
+  text-transform: uppercase;
+  font-size: xx-large;
+}
+
+.contenedor_titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  margin-bottom: 3rem;
 }
