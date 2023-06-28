@@ -6,17 +6,18 @@ import CarouselImage from '../../components/Carousel/Carousel';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import CardFrase from '../CardFrase/CardFrase';
 import { db } from '../../firebase/InitConfig';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
   const [usuario, setUsuario] = useState();
   const { user } = useAuth();
-  
+
   const obtenerDatosUsuario = async () => {
     const docRef = doc(db, 'usuarios', user.uid);
     try {
       const docSnap = await getDoc(docRef);
-      setUsuario(docSnap.data()); 
+      setUsuario(docSnap.data());
     } catch (error) {
       console.log(error)
     }
@@ -29,14 +30,13 @@ const Home = () => {
     //   console.log(error)
     // }
   }
-console.log(usuario);
 
   useEffect(() => {
     obtenerDatosUsuario();
   }, []);
 
   const date = new Date;
-  let saludo; 
+  let saludo;
   switch (date.getHours()) {
     case 12:
     case 13:
@@ -60,7 +60,7 @@ console.log(usuario);
     case 5:
       saludo = 'Buenas noches';
       break;
-    
+
     case 6:
     case 7:
     case 8:
@@ -89,11 +89,13 @@ console.log(usuario);
           } */}
           {usuario ? usuario.username : user.displayName}
         </span></h4>
-        <img
-          src={usuario ? usuario.photouser : user.photoURL}
-          alt='photo'
-          className={`${style.photo_user}`}
-        />
+        <Link to={'/perfil'}>
+          <img
+            src={usuario ? usuario.photouser : user.photoURL}
+            alt='photo'
+            className={`${style.photo_user}`}
+          />
+        </Link>
       </div>
       <CardFrase />
     </div>
