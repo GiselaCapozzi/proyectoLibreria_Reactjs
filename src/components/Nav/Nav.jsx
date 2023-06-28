@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import logo from '../../assets/Libro-viejo-15a6c78c.png';
 import "./Nav.css";
+import photouser from '../../assets/photouser.png';
 
 // import Categorias from "../../container/Categorias/Categorias";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
@@ -69,7 +70,7 @@ const Navbar = () => {
           </li>
           <li><Link to="/autores">AUTORES</Link></li>
           <li><Link to='/editoriales' >EDITORIALES</Link></li> */}
-          <li><Link to="/autores">BUSCADOR DE LIBROS</Link></li>
+          <li className={`buscador_libro`}><Link to="/autores">BUSCADOR DE LIBROS</Link></li>
           {
             usuario && usuario.admin === true ? <li><Link to="/admin">TABLERO ADMIN</Link></li> : null
           }
@@ -79,23 +80,11 @@ const Navbar = () => {
         <ul className="menu_session">
           {/* <li><Link to='/buscador'><i className='bi bi-search'></i></Link></li> */}
           <li>
-            {
-              usuario && <img className={`fotoUsuario`} src={usuario.photouser} alt="" />
-            }
-            {
-              !user && <i className='bi bi-person-circle'></i>
-            }
+            <i className='bi bi-person-circle fotoUsuario'></i>
             <ul className={`submenu_session`}>
               {
                 user ? (
                   <>
-                    <li><Link 
-                    to='/perfil'
-                    data-bs-toggle='modal'
-                    data-bs-target='#modalPerfil'
-                    >
-                    Perfil
-                    </Link></li>
                     <li><Link onClick={handleLogout}>Salir</Link></li>
                   </>
                 ) : (

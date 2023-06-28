@@ -37,13 +37,43 @@
   margin-top: 15px;
 }
 
-input[type='file'] {
-  appearance: none;
-  display: none;
-  visibility: hidden;
-  opacity: 0;
-  top: 900px;
-  z-index: 99;
+.input_image {
+  display: none; 
+}
+
+.label_image {
+  display: inline-block;
+  text-transform: uppercase;
+  color: var(--color-texto);
+  background: var(--color-border);
+  text-align: center;
+  padding: 15px 40px;
+  letter-spacing: 1.5px;
+  user-select: none;
+  cursor: pointer;
+  box-shadow: 5px 15px 25px var(--color-texto);
+  border-radius: 3px;
+}
+
+.label_image i {
+  font-size: 20px;
+  margin-right: 10px;
+  font-weight: bolder;
+  color: var(--color-texto);
+}
+
+.label_image:active {
+  transform: scale(0.9);
+}
+
+.input_username {
+  border: none;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.input_username:focus {
+  background-color: var(--color-border);
+  color: var(--color-texto);
 }
 
 .contenedor_btn_file {

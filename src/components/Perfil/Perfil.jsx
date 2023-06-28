@@ -1,18 +1,26 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import style from './Perfil.module.css';
 import notUser from '../../assets/not_user.jpg';
 import { useAuth } from '../../context/authContext';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
+import { db } from '../../firebase/InitConfig';
+import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { storage } from '../../firebase/InitConfig';
+import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2';
 
 const Perfil = () => {
   const { user } = useAuth();
   const [usuario, setUsuario] = useState({
     username: '',
-    email: '',
     photouser: ''
   });
+
+  const [updateUser, setUpdateUser] = useState({
+    username: '',
+    photouser: ''
+  })
   const navigate = useNavigate();
 
   const obtenerDatosUsuario = async () => {
@@ -23,13 +31,70 @@ const Perfil = () => {
         .then((res) => {
           setUsuario({
             username: res.data().username,
-            email: res.data().email,
             photouser: res.data().photouser
           })
         })
     } catch (error) {
       console.log(error)
     }
+  }
+
+  const handleChange = ({ target: { name, value } }) => {
+    setUpdateUser({
+      ...updateUser,
+      [name]: value
+    })
+  }
+
+  const handleChangeImage = async (e) => {
+    const storageRef = ref(storage, `photoUser/${uuidv4()}`)
+    await uploadBytes(storageRef, e.target.files[0])
+      .then(snapshot => {
+        console.log(snapshot)
+      })
+    const imageUrl = await getDownloadURL(storageRef);
+    setUpdateUser({
+      ...updateUser,
+      photouser: imageUrl
+    })
+  }
+
+  console.log(updateUser);
+
+  const actualizarUsuario = async () => {
+    Swal.fire({
+      title: '¿Quiére guardar los cambios?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Acepto'
+    }).then(res => {
+      if (res.isConfirmed) {
+        Swal.fire(
+          'El perfil ha sido actualizado!'
+        )
+      } else {
+        setUpdateUser({
+          username: usuario.username,
+          photouser: usuario.photouser
+        })
+        Swal.fire(
+          'Se ha cancelado la actualización'
+        )
+      }
+    })
+    const docRef = doc(db, 'usuarios', user.uid);
+    await updateDoc(docRef, {
+      username: updateUser.username || usuario.username,
+      photouser: updateUser.photouser || usuario.photouser
+    })
+      .then(docRef => {
+        console.log(docRef)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   useEffect(() => {
@@ -47,24 +112,28 @@ const Perfil = () => {
           <div className={`container`}>
             <form onSubmit={handleSubmit}>
               <div className={`${style.image_container}`}>
-                {/* <button className={`${style.contenedor_btn_file}`}> */}
-                  <label htmlFor='btn-file'></label>
-                  <input id='btn-file' type='file' />
-                  <img className={`${style.photouser}`} src={usuario && usuario.photouser} alt='foto' />
-                  <i className={`bi bi-pencil ${style.pencil_image}`}></i>
-                  {/* <span><i className={`bi bi-pencil ${style.pencil_image}`}></i></span> */}
-                {/* </button> */}
+                <img className={`${style.photouser}`} src={updateUser.photouser !== '' ? updateUser.photouser : usuario.photouser} alt='foto' />
+                <input
+                  id='btn-file'
+                  type='file'
+                  onChange={handleChangeImage}
+                  name='photouser'
+                  className={`${style.input_image}`}
+                />
+                <label htmlFor='btn-file' className={`${style.label_image}`}><i className={`bi bi-upload`}></i>Upload File</label>
               </div>
               <div className={`${style.usuario_container}`}>
                 <label className={`form-label`}>Nombre de usuario</label>
-                <input className={`form-control`} value={usuario && usuario.username} />
-              </div>
-              <div className={`${style.email_container}`}>
-                <label className={`form-label`}>Email</label>
-                <input className={`form-control`} value={usuario && usuario.email} />
+                <input
+                  className={`form-control ${style.input_username}`}
+                  placeholder={usuario && usuario.username}
+                  onChange={handleChange}
+                  name='username'
+                />
               </div>
             </form>
-            <button className={`btn btn-primary ${style.boton}`}>Volver al home</button>
+            <button className={`btn btn-success ${style.boton}`} onClick={actualizarUsuario}>Actualizar</button>
+            <button className={`btn btn-primary ${style.boton}`} onClick={() => navigate('/')}>Volver al home</button>
           </div>
         ) :
           (

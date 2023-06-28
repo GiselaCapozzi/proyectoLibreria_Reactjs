@@ -6,16 +6,45 @@
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 0.8fr 5fr;
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.titulo {
+  margin-top: 12px;
+}
+
+.container_registros {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 5px 20px; */
+  width: 100%;
+  background-color: var(--color-principal);
 }
 
 .registros {
-  border-right: 1px solid var(--color-border);
-  margin: 8px;
-  width: auto;
   height: auto;
+  margin: 20px 50px 0 50px;
+}
+
+.registros_boton {
+  padding: 10px;
+  color: var(--color-texto);
+  margin-bottom: 12px;
+}
+
+.registros_boton:hover {
+  background-color: var(--color-border);
+  color: var(--color-enlace);
+}
+
+.registros button {
+  margin-right: 12px;
+}
+
+.tabla {
+  margin: 50px 0px 100px 50px;
 }

@@ -30,9 +30,9 @@ export function AuthProvider({ children }) {
     const docRef = doc(db, 'usuarios', user.uid);
     try {
       await getDoc(docRef)
-      .then((res) => {
-        setUsuario(res.data())
-      })
+        .then((res) => {
+          setUsuario(res.data())
+        })
     } catch (error) {
       console.log(error)
     }
@@ -49,15 +49,15 @@ export function AuthProvider({ children }) {
       .then((usuarioFirebase) => {
         return usuarioFirebase;
       });
-      
-      console.log(infoUsuario.user.uid);
-      const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
-      setDoc(docuRef, {
-        email: email,
-        username : username,
-        photouser: photouser,
-        admin: admin
-      })
+
+    console.log(infoUsuario.user.uid);
+    const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
+    setDoc(docuRef, {
+      email: email,
+      username: username,
+      photouser: photouser,
+      admin: admin
+    })
   }
 
   const login = (email, password) => signInWithEmailAndPassword(auth, email, password)
@@ -73,8 +73,13 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser);
-      setLoading(false);
+      if (currentUser) {
+        setUser(currentUser);
+        setLoading(false);
+      } else {
+        setUser(null);
+        setLoading(true);
+      }
     });
 
     return () => unsubscribe();
