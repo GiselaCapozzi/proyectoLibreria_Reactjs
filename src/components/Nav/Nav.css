@@ -185,6 +185,7 @@
     height: -webkit-fill-available;
     transform: translateX(-100%);
     /* transition: 0.1s ease all; */
+    z-index: 99;
   }
 
   .nav_items.open {

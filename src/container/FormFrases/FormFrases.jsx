@@ -1,17 +1,51 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import style from './FormFrases.module.css';
-import { app } from '../../firebase/InitConfig';
-import { getFirestore, doc, setDoc, getDocs, collection } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
+import { db } from '../../firebase/InitConfig';
+import Modals from '../../components/Modals/Modals';
 
 const FormFrases = () => {
-  const db = getFirestore(app);
 
   const [frase, setFrase] = useState({
     autor: '',
     frase: ''
   });
   const [listFrase, setListFrase] = useState([]);
+  const [show, setShow] = useState(false);
+  const [mensaje, setMensaje] = useState({
+    titulo: '',
+    autor: '',
+    frase: ''
+  })
+
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow = (e) => {
+    setShow(true);
+    if (e.target.id === 'button_editar') {
+      const lineaAutor = e.target.parentElement.parentElement.parentElement.children[0].innerText;
+      const lineaFrase = e.target.parentElement.parentElement.parentElement.children[1].innerText;
+      setMensaje({
+        titulo: 'Editar',
+        autor: lineaAutor,
+        frase: lineaFrase,
+      })
+    } else if (e.target.id === 'button_eliminar') {
+      setMensaje({
+        titulo: 'Eliminar',
+        autor: '',
+        frase: ''
+      })
+    } else {
+      setMensaje({
+        titulo: '',
+        autor: '',
+        frase: ''
+      })
+    }
+  }
 
   const handleChange = ({ target: { name, value } }) => {
     setFrase({
@@ -29,6 +63,10 @@ const FormFrases = () => {
     e.target.reset();
   }
 
+  const mostrarDatos = (e) => {
+    console.log(e.currentTarget.innerText)
+  }
+
   useEffect(() => {
     const obtenerFrases = async () => {
       try {
@@ -42,10 +80,8 @@ const FormFrases = () => {
         console.log(error)
       }
     }
-      obtenerFrases();
+    obtenerFrases();
   }, [])
-
-  console.log(listFrase);
 
   return (
     <div className={`${style.container}`}>
@@ -75,36 +111,60 @@ const FormFrases = () => {
         </form>
       </div>
       {
-        listFrase === [] ? (
+        !listFrase ? (
           <h3>No hay frases aún</h3>
         ) : (
           <div className={`${style.tabla_frases}`}>
-        <table className={`table table-striped table-hover table-bordered border-primary`}>
-          <thead>
-            <tr>
-              <th scope='col'>Autor</th>
-              <th scope='col'>Frase</th>
-              <th scope='col'>Editar</th>
-            </tr>
-          </thead>
-          {
-            listFrase.map(frase => (
-              <tbody key={frase.id}>
+            <table className={`table table-striped table-hover table-bordered border-primary`}>
+              <thead className={`${style.tabla_titulo}`}>
                 <tr>
-                  <td>{frase.frase.autor}</td>
-                  <td>{frase.frase.frase}</td>
-                  <td>
-                    <button className={`btn btn-success`}><span className={`bi bi-pencil`}></span></button>
-                    <button className={`btn btn-danger`}><span className={`bi bi-trash`}></span></button>
-                  </td>
+                  <th scope='col'>Autor</th>
+                  <th scope='col'>Frase</th>
+                  <th scope='col'>Editar</th>
                 </tr>
-              </tbody>
-            ))
-          }
-        </table>
-      </div>
+              </thead>
+              {
+                listFrase.map(frase => (
+                  <tbody key={frase.id}>
+                    <tr>
+                      <td>{frase.frase.autor}</td>
+                      <td>{frase.frase.frase}</td>
+                      <td className={`${style.botones}`}>
+                        <div className={`${style.contenedor_botones}`}>
+                          <button
+                            className={`btn btn-success`}
+                            onClick={handleShow}
+                            id='button_editar'
+                          >
+                          Editar
+                          </button>
+                          <button
+                            className={`btn btn-danger`}
+                            onClick={handleShow}
+                            id='button_eliminar'
+                          >
+                          Eliminar
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                ))
+              }
+            </table>
+            <Modals
+              show={show}
+              handleClose={handleClose}
+              mensaje={mensaje}
+              frase={frase}
+            />
+          </div>
         )
       }
+      <div>
+
+      </div>
+
     </div>
   )
 }
