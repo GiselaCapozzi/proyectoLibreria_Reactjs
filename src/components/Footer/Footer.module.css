@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 100vw;
+  width: 99vw;
   height: 90px;
   border-bottom: var(--linea_borde);
   margin: 0;

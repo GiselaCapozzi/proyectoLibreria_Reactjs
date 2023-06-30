@@ -52,7 +52,7 @@ const Home = () => {
     case 21:
     case 22:
     case 23:
-    case 24:
+    case 0:
     case 1:
     case 2:
     case 3:
@@ -60,7 +60,6 @@ const Home = () => {
     case 5:
       saludo = 'Buenas noches';
       break;
-
     case 6:
     case 7:
     case 8:
