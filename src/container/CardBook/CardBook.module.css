@@ -1,0 +1,74 @@
+:root {
+  --color-principal: #14080E;
+  --color-border: #49475B;
+  --color-texto: #E9EB9E;
+  --color-enlace: #ACC196;
+  --color-fondo: #799496;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 56rem;
+  height: auto;
+  margin: 15px 0;
+}
+
+.container_card {
+  background-color: #616E79;
+  box-shadow: 2px 2px 10px var(--color-principal);
+  margin: 12px;
+  height: 35rem;
+  max-width: 15rem;
+}
+
+.container_image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portada {
+  height: 20rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.titulo,
+.texto {
+  color: var(--color-texto);
+}
+
+.titulo {
+  text-transform: uppercase;
+  align-items: center;
+  font-size: 15px;
+}
+
+.texto {
+  font-size: 12px;
+}
+
+.container_boton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+
+.boton_mas {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row; */
+  float: right;
+  /* left: -10px; */
+  position: relative;
+  /* top: -10px; */
+  vertical-align: bottom;
+  color: #E9EB9E;
+  width: 100%;
+}
