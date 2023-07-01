@@ -20,7 +20,20 @@
 }
 
 .input_search {
-  width: 75%;
+  text-transform: uppercase;
+  text-align: center;
+  height: 40px;
+  border-radius: 15px;
+  border-color: #14080E;
+  margin: 15px;
+}
+
+.buscador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 75%;  
 }
 
 .input_search:focus {
@@ -38,7 +51,12 @@
   top: 17%;
 }
 
+.sin_busqueda {
+  color: var(--color-principal);
+}
+
 @media (max-width: 768px) {
+
   .icon_search {
     top: 18.5%;
     left: 78%;

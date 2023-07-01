@@ -72,3 +72,40 @@
   color: #E9EB9E;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .icon_search {
+    top: 18.5%;
+    left: 78%;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .container_card {
+    margin: 7px;
+    height: 15rem;
+    max-width: 12rem;
+  }
+
+  .portada {
+    height: 10rem;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .titulo {
+    text-transform: uppercase;
+    align-items: center;
+    font-size: 10px;
+  }
+  
+  .texto {
+    visibility: hidden;
+  }
+
+  .container_texto {
+    margin-bottom: 900px;
+  }  
+}
