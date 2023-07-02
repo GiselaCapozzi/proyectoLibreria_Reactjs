@@ -45,3 +45,19 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --color-principal: #14080E;
+  --color-border: #49475B;
+  --color-texto: #E9EB9E;
+  --color-enlace:  #ACC196;
+}
+
+#dark {
+  background-color: black;
+  color: var(--color-texto);
+}
+
+#light {
+  background-color: var(--color-texto);
+  color: var(--color-principal);
+}

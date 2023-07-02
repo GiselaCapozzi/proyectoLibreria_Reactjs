@@ -4,15 +4,16 @@ import { useAuth } from '../../context/authContext';
 import logo from '../../assets/Libro-viejo-15a6c78c.png';
 import "./Nav.css";
 import photouser from '../../assets/photouser.png';
+import Switch from 'react-switch';
 
 // import Categorias from "../../container/Categorias/Categorias";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
-const Navbar = () => {
+const Navbar = ({ handleSwitch, checked }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
-
   const [usuario, setUsuario] = useState();
+
   const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
 
@@ -79,6 +80,21 @@ const Navbar = () => {
       <div className='nav_iconos'>
         <ul className="menu_session">
           {/* <li><Link to='/buscador'><i className='bi bi-search'></i></Link></li> */}
+          <Switch
+            onChange={handleSwitch}
+            checked={checked}
+            onColor="#86d3ff"
+            onHandleColor="#2693e6"
+            handleDiameter={30}
+            uncheckedIcon={false}
+            checkedIcon={false}
+            boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+            activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+            height={20}
+            width={48}
+            className="react-switch"
+            id="material-switch"
+          />
           <li>
             <i className='bi bi-person-circle fotoUsuario'></i>
             <ul className={`submenu_session`}>
