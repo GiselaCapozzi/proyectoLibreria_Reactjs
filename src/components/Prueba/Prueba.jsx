@@ -8,13 +8,14 @@ const Prueba = () => {
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pagina, setPagina] = useState(1);
-  const [porPagina, setPorPagina] = useState(18);
+  const [porPagina, setPorPagina] = useState(40);
 
   useEffect(() => {
     fetchBooks();
   }, [currentPage]);
 
   const fetchBooks = async () => {
+    setBooks([])
     try {
       const response = await axios.get(
         `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${porPagina}&startIndex=${currentPage}&key=AIzaSyAJlKP9GASA1rY442XsavTNlKXGcNnNR-c`
