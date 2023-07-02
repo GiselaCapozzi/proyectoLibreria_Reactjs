@@ -14,10 +14,12 @@ const Prueba = () => {
     fetchBooks();
   }, [currentPage]);
 
+  const URL_API = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${porPagina}&startIndex=${currentPage}&key=AIzaSyAJlKP9GASA1rY442XsavTNlKXGcNnNR-c`
+
   const fetchBooks = async () => {
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${porPagina}&startIndex=${currentPage}&key=AIzaSyAJlKP9GASA1rY442XsavTNlKXGcNnNR-c`
+        URL_API
       );
       setBooks(response.data.items);
     } catch (error) {
