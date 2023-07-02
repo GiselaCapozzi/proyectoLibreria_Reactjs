@@ -1,16 +1,19 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CardBook.module.css';
 import sinPortada from '../../assets/sin_portada.jpg';
 
-const CardBook = ({ infoLibro }) => {
+const CardBook = ({ books, pagina, porPagina }) => {
 
   return (
     <>
       {
-        infoLibro ? (
+        books ? (
           <div className={`${styles.container}`} >
             {
-              infoLibro.map(item => (
+              books
+              .slice((pagina - 1) * porPagina, (pagina - 1) * porPagina + porPagina)
+              .map(item => (
                 <div key={item.id} className={`card ${styles.container_card}`}>
                   <div className={`${styles.container_image}`}>
                     <img src={

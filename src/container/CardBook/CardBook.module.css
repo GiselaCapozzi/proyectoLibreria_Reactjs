@@ -22,7 +22,7 @@
   box-shadow: 2px 2px 10px var(--color-principal);
   margin: 12px;
   height: 35rem;
-  max-width: 15rem;
+  width: 15rem;
 }
 
 .container_image {

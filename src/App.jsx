@@ -11,7 +11,7 @@ import Login from "./container/Login/Login";
 import Home from "./container/Home/Home";
 import Categoria from "./container/Categoria/Categoria";
 import AdminTablero from "./container/AdminTablero/AdminTablero";
-import Buscador from "./components/Buscador/Buscador";
+import Prueba from "./components/Prueba/Prueba";
 import NotFound from "./components/NotFound/NotFound";
 import Register from './container/Register/Register';
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
@@ -32,9 +32,8 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/categoria/:categoria" element={<Categoria />} />
-            <Route path="/buscador" element={<Buscador />} />
+            <Route path="/prueba" element={<Prueba />} />
             <Route path="/admin" element={<AdminTablero />} />
-            <Route path="/buscador" element={<Buscador />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/register" element={<Register />} />
             <Route path="/allcategories" element={<AllCategories />}/>
