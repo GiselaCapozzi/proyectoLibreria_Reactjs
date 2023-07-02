@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import style from './Prueba.module.css';
 import CardBook from '../../container/CardBook/CardBook';
+import.meta.url;
+// const CREDENCIAL_API = ;
 
 const Prueba = () => {
   const [books, setBooks] = useState([]);
@@ -15,10 +17,9 @@ const Prueba = () => {
   }, [currentPage]);
 
   const fetchBooks = async () => {
-    setBooks([])
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${porPagina}&startIndex=${currentPage}&key=AIzaSyAJlKP9GASA1rY442XsavTNlKXGcNnNR-c`
+        `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${porPagina}&startIndex=${currentPage}&key=${import.meta.env.VITE_CREDENTIAL_BOOKS}`
       );
       setBooks(response.data.items);
     } catch (error) {
@@ -27,6 +28,7 @@ const Prueba = () => {
   };
 
   const handleChange = (e) => {
+    setBooks([])
     setSearch(e.target.value)
   }
 
@@ -43,26 +45,34 @@ const Prueba = () => {
 
   return (
     <div className={`${style.container}`}>
-    <input
+      <input
         className={` form-control ${style.input_search}`}
         type='search'
         onChange={handleChange}
         defaultValue={search}
       />
       <button
-          type='submit'
-          className={`btn btn-success`}
-          onClick={fetchBooks}
-        >Buscar</button>
+        type='submit'
+        className={`btn btn-success`}
+        onClick={fetchBooks}
+      >Buscar</button>
       <h1>Books</h1>
-      <CardBook
-        books={books}
-        key={books.id}
-        pagina={pagina}
-        porPagina={porPagina}
-      />
-      <button onClick={handlePreviousPage}>Previous</button>
-      <button onClick={handleNextPage}>Next</button>
+      {
+        search.length > 0 ? (
+          <div>
+            <CardBook
+              books={books}
+              key={books.id}
+              pagina={pagina}
+              porPagina={porPagina}
+            />
+            <button onClick={handlePreviousPage}>Previous</button>
+            <button onClick={handleNextPage}>Next</button>
+          </div>
+        ) : (
+          <h4 className={`${style.sin_busqueda}`}>Aún no se ha realizado ninguna búsqueda</h4>
+        )
+      }
       <div className={`${style.espacio}`}>
       </div>
     </div>
