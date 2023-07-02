@@ -8,18 +8,17 @@ const Prueba = () => {
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pagina, setPagina] = useState(1);
-  const [porPagina, setPorPagina] = useState(18);
+  const [porPagina, setPorPagina] = useState(40);
 
   useEffect(() => {
     fetchBooks();
   }, [currentPage]);
 
-  const URL_API = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${porPagina}&startIndex=${currentPage}&key=AIzaSyAJlKP9GASA1rY442XsavTNlKXGcNnNR-c`
-
   const fetchBooks = async () => {
+    setBooks([])
     try {
       const response = await axios.get(
-        URL_API
+        `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${porPagina}&startIndex=${currentPage}&key=AIzaSyAJlKP9GASA1rY442XsavTNlKXGcNnNR-c`
       );
       setBooks(response.data.items);
     } catch (error) {
@@ -28,7 +27,6 @@ const Prueba = () => {
   };
 
   const handleChange = (e) => {
-    setBooks([])
     setSearch(e.target.value)
   }
 
@@ -45,37 +43,26 @@ const Prueba = () => {
 
   return (
     <div className={`${style.container}`}>
-      <input
+    <input
         className={` form-control ${style.input_search}`}
         type='search'
         onChange={handleChange}
         defaultValue={search}
       />
       <button
-        type='submit'
-        className={`btn btn-success`}
-        onClick={fetchBooks}
-      >Buscar</button>
+          type='submit'
+          className={`btn btn-success`}
+          onClick={fetchBooks}
+        >Buscar</button>
       <h1>Books</h1>
-      {
-        search.length >= 1 ?
-          (
-            <div>
-              <CardBook
-                books={books}
-                key={books.id}
-                pagina={pagina}
-                porPagina={porPagina}
-              />
-              <button onClick={handlePreviousPage}>Previous</button>
-              <button onClick={handleNextPage}>Next</button>
-            </div>
-
-          ) :
-          (
-            <h4 className={`${style.sin_busqueda}`}>Realice una busqueda</h4>
-          )
-      }
+      <CardBook
+        books={books}
+        key={books.id}
+        pagina={pagina}
+        porPagina={porPagina}
+      />
+      <button onClick={handlePreviousPage}>Previous</button>
+      <button onClick={handleNextPage}>Next</button>
       <div className={`${style.espacio}`}>
       </div>
     </div>
