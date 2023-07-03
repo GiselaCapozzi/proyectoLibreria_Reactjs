@@ -55,6 +55,25 @@
   color: var(--color-principal);
 }
 
+.input_pagina {
+  width: 30px;
+  margin-right: 12px;
+  text-align: center;
+  background-color: var(--color-input);
+  border-radius: 7px;
+  color: var(--color-texto);
+}
+
+.container_botones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boton_anterior, .boton_siguiente {
+  margin: 12px;
+}
+
 @media (max-width: 768px) {
 
   .icon_search {
