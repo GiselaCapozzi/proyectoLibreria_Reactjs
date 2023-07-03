@@ -8,6 +8,7 @@ import Switch from 'react-switch';
 
 // import Categorias from "../../container/Categorias/Categorias";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
+import Toggle from "../Toggle";
 
 const Navbar = ({ handleSwitch, checked }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,20 +81,9 @@ const Navbar = ({ handleSwitch, checked }) => {
       <div className='nav_iconos'>
         <ul className="menu_session">
           {/* <li><Link to='/buscador'><i className='bi bi-search'></i></Link></li> */}
-          <Switch
-            onChange={handleSwitch}
+          <Toggle 
+            handleSwitch={handleSwitch}
             checked={checked}
-            onColor="#86d3ff"
-            onHandleColor="#2693e6"
-            handleDiameter={30}
-            uncheckedIcon={false}
-            checkedIcon={false}
-            boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-            activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-            height={20}
-            width={48}
-            className="react-switch"
-            id="material-switch"
           />
           <li>
             <i className='bi bi-person-circle fotoUsuario'></i>
