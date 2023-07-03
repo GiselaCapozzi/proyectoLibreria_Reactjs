@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 95vw;
+}
+
+.container_imagen {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: no-wrap;
+  height: auto;
+  width: auto;
+  margin: 25px 12px;
+}
+
+.portada {
+  height: auto;
+  width: 250px;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

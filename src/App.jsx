@@ -18,6 +18,7 @@ import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import AllCategories from "./container/AllCategories/AllCategories";
 import Perfil from "./components/Perfil/Perfil";
 import { useState } from "react";
+import InfoLibro from "./components/InfoLibro/InfoLibro";
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -35,15 +36,15 @@ function App() {
   }
 
   return (
-    <div id={checked} style={checked ? 
-    {
-      backgroundColor: `${dark.backgroundColor}`,
-      color: `${dark.color}`
-    } :
-    { 
-      backgroundColor: `${light.backgroundColor}`,
-      color: `${light.color}`
-    }
+    <div id={checked} style={checked ?
+      {
+        backgroundColor: `${dark.backgroundColor}`,
+        color: `${dark.color}`
+      } :
+      {
+        backgroundColor: `${light.backgroundColor}`,
+        color: `${light.color}`
+      }
     }
     >
       <AuthProvider>
@@ -51,7 +52,7 @@ function App() {
           handleSwitch={handleSwitch}
           checked={checked}
         />
-        <Routes>`
+        <Routes>
           <Route path="/" element={
             <ProtectedRoute>
               <Home />
@@ -60,12 +61,18 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/categoria/:categoria" element={<Categoria />} />
-          <Route path="/buscador" element={<Buscador />} />
+          <Route path="/buscador" element={
+            <ProtectedRoute>
+              <Buscador />
+            </ProtectedRoute>
+          }
+          />
           <Route path="/admin" element={<AdminTablero />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/register" element={<Register />} />
           <Route path="/allcategories" element={<AllCategories />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/buscador/:libro/:id" element={<InfoLibro />}/>
         </Routes>
         <Footer />
       </AuthProvider>

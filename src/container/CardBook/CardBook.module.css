@@ -19,7 +19,7 @@
 
 .container_card {
   background-color: #616E79;
-  box-shadow: 2px 2px 10px var(--color-principal);
+  box-shadow: 2px 2px 10px var(--color-texto);
   margin: 12px;
   height: 35rem;
   width: 15rem;
