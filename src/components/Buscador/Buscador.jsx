@@ -7,19 +7,19 @@ import.meta.url;
 
 const Buscador = () => {
   const [books, setBooks] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState({
+    busqueda: ''
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [pagina, setPagina] = useState(1);
   const [porPagina, setPorPagina] = useState(12);
 
-  useEffect(() => {
-    fetchBooks();
-  }, [currentPage]);
+  const URL_API = `https://www.googleapis.com/books/v1/volumes?q=${search.busqueda}&maxResults=${porPagina}&startIndex=${currentPage}&key=${import.meta.env.VITE_CREDENTIAL_BOOKS}`;
 
   const fetchBooks = async () => {
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${porPagina}&startIndex=${currentPage}&key=${import.meta.env.VITE_CREDENTIAL_BOOKS}`
+        URL_API
       );
       setBooks(response.data.items);
     } catch (error) {
@@ -27,11 +27,19 @@ const Buscador = () => {
     }
   };
 
+  useEffect(() => {
+    fetchBooks();
+  }, [currentPage]);
+
   const handleChange = (e) => {
     setBooks([])
     setCurrentPage(1)
-    setSearch(e.target.value)
+    setSearch({
+      [e.target.name]: e.target.value
+    })
   }
+
+console.log(search.busqueda)
 
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -51,7 +59,8 @@ const Buscador = () => {
           className={` form-control ${style.input_search}`}
           type='search'
           onChange={handleChange}
-          defaultValue={search}
+          defaultValue={search.busqueda}
+          name='busqueda'
         />
         <button
           type='submit'
@@ -61,7 +70,7 @@ const Buscador = () => {
       </div>
 
       {
-        search.length > 0 ? (
+        search.busqueda.length > 0 ? (
           <div>
             <CardBook
               books={books}
@@ -81,7 +90,7 @@ const Buscador = () => {
                 placeholder={currentPage}
                 className={`${style.input_pagina}`}
                 readOnly
-                // disabled
+              // disabled
               />
               <button
                 onClick={handleNextPage}
