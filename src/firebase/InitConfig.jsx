@@ -19,11 +19,4 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
-export const db = getFirestore();
-// export const uploadFile = async (file, storageRef) => {
-//   storageRef = ref(storage, `photoUser/${uuidv4()}`)
-//   uploadBytes(storageRef, file)
-//     .then(snapshot => {
-//       console.log(snapshot)
-//     })
-// }
+export const db = getFirestore(app);

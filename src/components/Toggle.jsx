@@ -7,7 +7,7 @@ const Toggle = ({ handleSwitch, checked }) => {
             onChange={handleSwitch}
             checked={checked}
             handleDiameter={28}
-            offColor="#E9EB9E"
+            offColor="#EBEDA7"
             onColor="#000"
             offHandleColor="#fff"
             onHandleColor="#000"

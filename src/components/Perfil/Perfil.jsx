@@ -10,7 +10,7 @@ import { storage } from '../../firebase/InitConfig';
 import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
 
-const Perfil = () => {
+const Perfil = ({ checked }) => {
   const { user } = useAuth();
   const [usuario, setUsuario] = useState({
     username: '',
@@ -120,7 +120,21 @@ const Perfil = () => {
                   name='photouser'
                   className={`${style.input_image}`}
                 />
-                <label htmlFor='btn-file' className={`${style.label_image}`}><i className={`bi bi-upload`}></i>Upload File</label>
+                {
+                  checked ?
+                    <label
+                      htmlFor='btn-file'
+                      className={`${style.label_image}`}
+                      style={{ boxShadow: '5px 5px 25px #E9EB9E' }}
+                    >
+                      <i className={`bi bi-upload`}></i>Upload File</label> :
+                    <label
+                      htmlFor='btn-file'
+                      className={`${style.label_image}`}
+                      style={{ boxShadow: '5px 5px 25px #14080E' }}  
+                    >
+                      <i className={`bi bi-upload`}></i>Upload File</label>
+                }
               </div>
               <div className={`${style.usuario_container}`}>
                 <label className={`form-label`}>Nombre de usuario</label>

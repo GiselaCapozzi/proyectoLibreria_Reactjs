@@ -10,6 +10,7 @@
 
 .fotoUsuario {
   font-size: 30px;
+  
 }
 
 .menu>li {
@@ -27,6 +28,10 @@
   padding-top: 8px;
 }
 
+.menu_session {
+  margin: 7px;
+}
+
 .menu_session>li {
   float: left;
   overflow: hidden;
@@ -40,12 +45,12 @@
 }
 
 .munu_session>li a {
-  width: 114px;
+  /* width: 114px; */
   height: 35px;
   display: block;
   text-align: center;
   text-decoration: none;
-  padding-top: 8px;
+  padding-top: 2px;
 }
 
 .submenu {
@@ -66,13 +71,13 @@
   overflow: hidden;
   width: 10rem;
   float: right;
-  right: 10px;
-  top: 42px;
+  right: 30px;
+  top: 52px;
   background-color: var(--color-principal);
   transition: 1s;
   height: 0px;
   box-shadow: 2px 2px 5px var(--color-texto);
-  /* z-index: 99; */
+  text-align: center;
 }
 
 .submenu li {
@@ -80,6 +85,10 @@
   overflow: hidden;
   width: 100%;
   float: left;
+}
+
+ul {
+  padding: 0;
 }
 
 .submenu_session li {
@@ -150,6 +159,7 @@
 .nav_logo img {
   width: 60px;
   height: 60px;
+  margin-right: 10px;
 }
 
 .nav_logo h3 {

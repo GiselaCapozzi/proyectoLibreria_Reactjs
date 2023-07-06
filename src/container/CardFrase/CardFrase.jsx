@@ -1,44 +1,53 @@
 import { useState, useEffect } from 'react';
 import style from './CardFrase.module.css';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, getDocs, getFirestore, onSnapshot, query } from 'firebase/firestore';
+import { useAuth } from '../../context/authContext';
 
 const CardFrase = () => {
-
-  const [frases, setFrases] = useState();
+  const [frases, setFrases] = useState([]);
   const db = getFirestore();
 
+  const { checked } = useAuth();
+
   useEffect(() => {
-    const obtenerFrases = async () => {
-      try {
-        const frasesRef = await getDocs(collection(db, 'frases'))
-        const docs = [];
-        frasesRef.forEach((doc) => {
-          docs.push({ ...doc.data(), id: doc.id })
-        });
-        setFrases(docs)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    obtenerFrases()
+    const q = query(collection(db, 'frases'))
+    onSnapshot(q, (querySnapshot) => {
+      setFrases(querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        data: doc.data()
+      })))
+    })
   }, []);
 
   return (
     <div className={`${style.container}`}>
-      {
-        frases !== undefined ? (
-          frases.map(f => (
-            <div className={`${style.card}`} key={f.id}>
-              <div className={`${style.texto}`}>
-                <h3 className={`${style.frase}`}>{f.frase.frase}</h3>
-                <h4 className={`${style.autor}`}>{f.frase.autor}</h4>
+      <div className={`${style.container_card}`}>
+        {
+          frases !== undefined ? (
+            frases.map(f => (
+              <div className={`${style.card}`} key={f.id}>
+                {
+                  checked ? (
+                    <div className={`${style.texto_dark}`}>
+                      <h3 className={`${style.frase_dark}`}>{f.data.frase}</h3>
+                      <h4 className={`${style.autor_dark}`}>{f.data.autor}</h4>
+                    </div>
+                  ) :
+                    (
+                      <div className={`${style.texto_light}`}>
+                        <h3 className={`${style.frase_light}`}>{f.data.frase}</h3>
+                        <h4 className={`${style.autor_light}`}>{f.data.autor}</h4>
+                      </div>
+                    )
+                }
+
               </div>
-            </div>
-          ))
-        ) : (
-          <p>No hay frase que mostrar aún</p>
-        )
-      }
+            ))
+          ) : (
+            <p>No hay frase que mostrar aún</p>
+          )
+        }
+      </div>
     </div>
   )
 }

@@ -1,6 +1,23 @@
 import { Button, Modal } from 'react-bootstrap';
 
-const Modals = ({ show, handleClose, mensaje }) => {
+const Modals = ({
+  show,
+  handleClose,
+  mensaje,
+  setModifAutor,
+  setModifFrase,
+  modifAutor,
+  modifFrase
+}) => {
+
+  const handleChangeAutor = e => {
+    setModifAutor(e.target.value);
+  }
+
+  const handleChangeFrase = e => {
+    setModifFrase(e.target.value);
+  }
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -11,11 +28,23 @@ const Modals = ({ show, handleClose, mensaje }) => {
           <div>
             <div>
               <label className={`form-label`}>Autor</label>
-              <input className={`form-control`} type='text' placeholder={mensaje.autor} />
+              <input
+                className={`form-control`}
+                type='text'
+                placeholder={mensaje.autor}
+                onChange={handleChangeAutor}
+                value={modifAutor}
+              />
             </div>
             <div>
               <label className={`form-label`}>Frase</label>
-              <input className={`form-control`} type='text'  placeholder={mensaje.frase}/>
+              <input
+                className={`form-control`}
+                type='text'
+                placeholder={mensaje.frase}
+                onChange={handleChangeFrase}
+                value={modifFrase}
+              />
             </div>
           </div>
         </Modal.Body>

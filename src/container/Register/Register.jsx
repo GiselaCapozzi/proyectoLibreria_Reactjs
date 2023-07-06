@@ -5,7 +5,7 @@ import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from '../../firebase/InitConfig';
-import { v4 as  uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
 
 const Register = () => {
@@ -15,7 +15,7 @@ const Register = () => {
     password: "",
     username: "",
     photoUser: "",
-    admin: false 
+    admin: false
   });
   const [error, setError] = useState('');
   // const [image, setImage] = useState('');
@@ -59,7 +59,7 @@ const Register = () => {
       navigate('/')
     } catch (error) {
       console.log(error.message)
-      if(error.message === 'Firebase: Error (auth/invalid-email).') {
+      if (error.message === 'Firebase: Error (auth/invalid-email).') {
         setError('Debe ingresar un email válido ');
       } else if (error.message === 'Firebase: Error (auth/missing-password).') {
         setError('Debe agregar una contraseña');
@@ -139,8 +139,8 @@ const Register = () => {
         </form>
         <div className={`${style.log_options}`}>
           <div className={style.log_account}>
-            <p>¿Tiene cuenta?</p>
             <Link to={"/login"} className={`${style.log_create}`}>
+              <p>¿Tiene cuenta?</p>
               <span>Inicie sesion</span>
             </Link>
           </div>
