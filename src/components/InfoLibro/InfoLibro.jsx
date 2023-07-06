@@ -10,6 +10,9 @@ const InfoLibro = () => {
   const [book, setBook] = useState();
   const [stars, setStars] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [bookmark, setBookMark] = useState(false);
+  const [iconLibro, setIconLibro] = useState(false);
+  const [journal, setJournal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,7 +31,19 @@ const InfoLibro = () => {
 
   useEffect(() => {
     obtenerLibro();
-  }, [])
+  }, []);
+
+  const cambiarBookmark = () => {
+    setBookMark(!bookmark);
+  }
+
+  const cambiarIconLibro = () => {
+    setIconLibro(!iconLibro);
+  }
+
+  const cambiarJournal = () => {
+    setJournal(!journal);
+  }
 
   console.log(book)
 
@@ -58,15 +73,53 @@ const InfoLibro = () => {
                     edit={true}
                   />
                 </div>
-                <div>
-                  <button className={`btn btn-light ${style.boton_lectura}`}>
-                    <span>{'Quiero leer'}</span>
-                  </button>
-                  <button className={`btn btn-light ${style.boton_select}`}>
-                    <div className={`${style.flecha}`}>
-                      <i className={`bi bi-caret-down`}></i>
-                    </div>
-                  </button>
+                <div className={`${style.container_iconos}`}>
+                  <div className={`${style.container_bookmark}`}>
+                    {
+                      !bookmark ?
+                          <i className={`bi bi-bookmark-heart ${style.bookmark}`}
+                            id="bookmark"
+                            onClick={cambiarBookmark}
+                          ></i>
+                          :
+                        <i className={`bi bi-bookmark-heart-fill ${style.bookmark}`}
+                          id="bookmark"
+                          onClick={cambiarBookmark}
+                        ></i>
+                    }
+                    <p>Me gusta</p>
+                  </div>
+                  <div className={`${style.container_libro}`}>
+                    {
+                      !iconLibro ? <i
+                        className={`bi bi-book ${style.libro}`}
+                        id="libro"
+                        onClick={cambiarIconLibro}
+                      ></i> :
+                        <i
+                          className={`bi bi-book-fill ${style.libro}`}
+                          id="libro"
+                          onClick={cambiarIconLibro}
+                        ></i>
+                    }
+                    <p>Leyendo</p>
+                  </div>
+                  <div
+                    className={`${style.container_journal}`}>
+                    {
+                      !journal ? <i
+                        className={`bi bi-journal-bookmark ${style.journal}`}
+                        id="jounal"
+                        onClick={cambiarJournal}
+                      ></i> :
+                        <i
+                          className={`bi bi-journal-bookmark-fill ${style.journal}`}
+                          id="jounal"
+                          onClick={cambiarJournal}
+                        ></i>
+                    }
+                    <p>Leído</p>
+                  </div>
                 </div>
               </div>
               <div className={`${style.container_descipcion}`}>
@@ -119,7 +172,7 @@ const InfoLibro = () => {
       <div className={`${style.boton_return}`}>
         <button
           className={`btn btn-primary ${style.return}`}
-          onClick={() => navigate('/buscador')}>
+          onClick={() => navigate(`/buscador`)}>
           Regresar al buscador</button>
       </div>
     </>

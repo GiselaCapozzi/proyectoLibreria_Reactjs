@@ -32,7 +32,6 @@ const Buscador = () => {
   }, [currentPage]);
 
   const handleChange = (e) => {
-    setBooks([])
     setCurrentPage(1)
     setSearch({
       [e.target.name]: e.target.value

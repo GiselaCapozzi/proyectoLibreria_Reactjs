@@ -8,14 +8,26 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.container_card {
+  display: flex;
+  align-items: center;
   /* justify-content: center; */
-  flex-direction: row;
+  flex-direction: column;
   overflow: hidden;
-  overflow-x: scroll;
-  width: 100vw;
-  height: auto; 
+  overflow-y: scroll;
   flex-wrap: nowrap;
-  /* margin-left: 50px; */
+  width: 80vw;
+  height: 500px; 
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-barra_desplazamiento) var(--color-secundario);
+  background-image: url('../../assets/Libro-viejo-15a6c78c.png');
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
+  background-position: center;
 }
 
 .card {
@@ -23,47 +35,66 @@
   justify-content: center;
   align-items: center;
   /* flex-direction: row; */
-  width: 150px;
-  height: auto;
+  width: 90rem;
+  height: 150px;
   /* margin: 5px 0; */
   padding: 20px;
+  /* background-color: aquamarine; */
 }
 
-.texto {
+.texto_light {
+  background-color: #49475b80;
+  color: var(--color-principal);
+}
+
+.texto_light, .texto_dark {
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
   flex-direction: column;
-  /* margin: 300px 0; */
-  /* padding: 200px; */
+  width: 700px;
 }
 
-.texto:hover {
+.texto_dark {
+  background-color: #E9EB9E80;
+  color: var(--color-principal);
+}
+
+.texto_light:hover {
+  background-color: var(--color-border);
+  color: var(--color-texto);
+}
+
+.texto_dark:hover {
   background-color: var(--color-texto);
+  color: var(--color-border);
 }
 
-.frase, .autor {
-  color: var(--color-border);
+.frase_dark, .autor_dark {
   padding: 12px;
   text-align: center;
 }
 
-.frase {
+.frase_light, .autor_light {
+  /* color: var(--color-border); */
+  padding: 12px;
+  text-align: center;
+}
+
+.frase_light, .frase_dark {
   font-weight: 300;
   font-size: 15px;
   font-style: italic;
   text-transform: uppercase;
 }
 
-.frase::after {
+.frase_light::after, .frase_dark::after {
   content: '>>';
 }
 
-.frase::before {
+.frase_light::before, .frase_light::before {
   content: '<<';
 }
 
-.autor {
+.autor_light, .autor_dark {
   font-weight: 200;
   font-size: 12px;
 }

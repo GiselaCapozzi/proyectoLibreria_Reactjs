@@ -15,6 +15,7 @@
   width: 100px;
   height: 100px;
   margin: 15px 0;
+  border-radius: 100%;
 }
 
 .image_container {
@@ -38,7 +39,7 @@
 }
 
 .input_image {
-  display: none; 
+  display: none;
 }
 
 .label_image {
@@ -51,7 +52,7 @@
   letter-spacing: 1.5px;
   user-select: none;
   cursor: pointer;
-  box-shadow: 5px 15px 25px var(--color-texto);
+  /* box-shadow: 5px 5px 25px var(--color-texto); */
   border-radius: 3px;
 }
 

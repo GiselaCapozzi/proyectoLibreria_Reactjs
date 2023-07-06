@@ -92,8 +92,16 @@
 }
 
 .log_account a span {
-  color: #799496;
+  color: #ACC196;
   list-style: none;
+}
+
+.log_create a {
+  text-decoration: none;
+}
+
+.log_create p {
+  color: #ACC196;
 }
 
 @media (max-width: 920px) {

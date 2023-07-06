@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
 
   const [usuario, setUsuario] = useState();
-  const { user } = useAuth();
+  const { user, checked } = useAuth();
 
   const obtenerDatosUsuario = async () => {
     const docRef = doc(db, 'usuarios', user.uid);
@@ -96,7 +96,7 @@ const Home = () => {
           />
         </Link>
       </div>
-      <CardFrase />
+      <CardFrase checked={checked}/>
     </div>
   )
 }

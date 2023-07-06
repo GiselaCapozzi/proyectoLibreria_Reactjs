@@ -16,5 +16,5 @@
   background-color: var(--color-perfil);
   border-radius: 100%;
   border: 3px solid var(--color-contorno);
-  box-shadow: 5px 5px 10px var(--color-contorno);
+  box-shadow: 1px 1px 3px var(--color-contorno);
 }

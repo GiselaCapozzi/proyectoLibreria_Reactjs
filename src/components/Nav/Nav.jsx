@@ -84,6 +84,7 @@ const Navbar = ({ handleSwitch, checked }) => {
           <Toggle 
             handleSwitch={handleSwitch}
             checked={checked}
+            className='toogle'
           />
           <li>
             <i className='bi bi-person-circle fotoUsuario'></i>

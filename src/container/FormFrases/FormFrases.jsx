@@ -1,7 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import style from './FormFrases.module.css';
-import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
-import { v4 as uuidv4 } from 'uuid';
+import { doc, collection, deleteDoc, addDoc, query, orderBy, onSnapshot, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/InitConfig';
 import Modals from '../../components/Modals/Modals';
 
@@ -11,41 +10,31 @@ const FormFrases = () => {
     autor: '',
     frase: ''
   });
-  const [listFrase, setListFrase] = useState([]);
-  const [show, setShow] = useState(false);
-  const [mensaje, setMensaje] = useState({
-    titulo: '',
-    autor: '',
-    frase: ''
-  })
+  const [frases, setFrases] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  // const [show, setShow] = useState(false);
+  // const [mensaje, setMensaje] = useState({
+  //   titulo: '',
+  //   autor: '',
+  //   frase: ''
+  // })
+  // const [modifFrase, setModifFrase] = useState('');
+  // const [modifAutor, setModifAutor] = useState('');
 
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleShow = (e) => {
-    setShow(true);
-    if (e.target.id === 'button_editar') {
-      const lineaAutor = e.target.parentElement.parentElement.parentElement.children[0].innerText;
-      const lineaFrase = e.target.parentElement.parentElement.parentElement.children[1].innerText;
-      setMensaje({
-        titulo: 'Editar',
-        autor: lineaAutor,
-        frase: lineaFrase,
-      })
-    } else if (e.target.id === 'button_eliminar') {
-      setMensaje({
-        titulo: 'Eliminar',
-        autor: '',
-        frase: ''
-      })
-    } else {
-      setMensaje({
-        titulo: '',
-        autor: '',
-        frase: ''
-      })
-    }
-  }
+  useEffect(() => {
+    const q = query(collection(db, 'frases'), orderBy('autor'))
+    onSnapshot(q, (querySnapshot) => {
+      if (querySnapshot.docs) {
+        setFrases(querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          data: doc.data()
+        })))
+      } else {
+        setFrases([]);
+      }
+    })
+
+  }, [frase])
 
   const handleChange = ({ target: { name, value } }) => {
     setFrase({
@@ -56,32 +45,78 @@ const FormFrases = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const docuRef = doc(db, `frases/${uuidv4()}`);
-    await setDoc(docuRef, {
-      frase
-    })
-    e.target.reset();
-  }
-
-  const mostrarDatos = (e) => {
-    console.log(e.currentTarget.innerText)
-  }
-
-  useEffect(() => {
-    const obtenerFrases = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'frases'))
-        const docs = [];
-        querySnapshot.forEach((doc) => {
-          docs.push({ ...doc.data(), id: doc.id })
+        await addDoc(collection(db, 'frases'), {
+          autor: frase.autor,
+          frase: frase.frase
         })
-        setListFrase(docs)
       } catch (error) {
         console.log(error)
       }
+      setFrase({
+        autor: '',
+        frase: ''
+      })
+  }
+
+  const collectionRef = collection(db, 'frases');
+
+  const borrarFrase = async (frase) => {
+    const fraseDocRef = doc(collectionRef, frase.id)
+    try {
+      await deleteDoc(fraseDocRef);
+    } catch (error) {
+      console.log(error)
     }
-    obtenerFrases();
-  }, [])
+  }
+
+  const actualizarFrase = async (e, frase) => {
+    const fraseDocRef = doc(db, 'frases', frase.id);
+      try {
+        await updateDoc(fraseDocRef, {
+          autor: modifAutor,
+          frase: modifFrase
+        })
+      } catch (error) {
+        console.log(error)
+      }
+      e.target.reset();
+  }
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleShow = async (e, frase) => {
+    setShow(true);
+    // if (e.target.id === 'button_editar') {
+    //   const lineaAutor = e.target.parentElement.parentElement.parentElement.children[0].innerText;
+    //   const lineaFrase = e.target.parentElement.parentElement.parentElement.children[1].innerText;
+    //   setMensaje({
+    //     titulo: 'Editar',
+    //     // autor: '' || modifAutor,
+    //     // frase: '' || modifFrase,
+    //   })
+    // }
+    // const fraseDocRef = doc(db, 'frases', frase.id);
+    // try {
+    //   if (lineaAutor.length >= 1 && lineaFrase >= 1) {
+    //     await updateDoc(fraseDocRef, {
+    //       autor: lineaAutor,
+    //       frase: lineaFrase
+    //     })
+    //   } else {
+    //     await updateDoc(fraseDocRef, {
+    //       autor: modifAutor,
+    //       frase: modifFrase
+    //     })
+    //   }
+    // } catch (error) {
+    //   console.log(error)
+    // }
+  }
+
+  console.log(frases)
 
   return (
     <div className={`${style.container}`}>
@@ -94,6 +129,7 @@ const FormFrases = () => {
               type='text'
               name='autor'
               onChange={handleChange}
+              value={frase.autor}
             />
           </div>
           <div>
@@ -102,16 +138,22 @@ const FormFrases = () => {
               className={`form-control ${style.form_frase}`}
               name='frase'
               onChange={handleChange}
+              value={frase.frase}
             ></textarea>
           </div>
-          <input
+          <button type='submit' className={`btn btn-primary ${style.boton}`}>
+            {
+              isEditing ? 'Actualizar' : 'Crear'
+            }
+          </button>
+          {/* <input
             className={`btn btn-primary ${style.boton}`}
             type='submit' value='Enviar'
-          />
+          /> */}
         </form>
       </div>
       {
-        !listFrase ? (
+        !frase ? (
           <h3>No hay frases aún</h3>
         ) : (
           <div className={`${style.tabla_frases}`}>
@@ -124,26 +166,26 @@ const FormFrases = () => {
                 </tr>
               </thead>
               {
-                listFrase.map(frase => (
+                frases.map(frase => (
                   <tbody key={frase.id}>
                     <tr>
-                      <td>{frase.frase.autor}</td>
-                      <td>{frase.frase.frase}</td>
+                      <td>{frase.data.autor}</td>
+                      <td>{frase.data.frase}</td>
                       <td className={`${style.botones}`}>
                         <div className={`${style.contenedor_botones}`}>
                           <button
                             className={`btn btn-success`}
-                            onClick={handleShow}
+                            onClick={(e) => actualizarFrase(e, frase)}
                             id='button_editar'
                           >
-                          Editar
+                            Editar
                           </button>
                           <button
                             className={`btn btn-danger`}
-                            onClick={handleShow}
+                            onClick={() => borrarFrase(frase)}
                             id='button_eliminar'
                           >
-                          Eliminar
+                            Eliminar
                           </button>
                         </div>
                       </td>
@@ -152,12 +194,16 @@ const FormFrases = () => {
                 ))
               }
             </table>
-            <Modals
+            {/* <Modals
               show={show}
               handleClose={handleClose}
               mensaje={mensaje}
               frase={frase}
-            />
+              setModifAutor={setModifAutor}
+              setModifFrase={setModifFrase}
+              modifAutor={modifAutor}
+              modifFrase={modifFrase}
+            /> */}
           </div>
         )
       }

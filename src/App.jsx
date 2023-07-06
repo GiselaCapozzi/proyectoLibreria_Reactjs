@@ -24,7 +24,7 @@ function App() {
   const [checked, setChecked] = useState(false);
   const [dark, setDark] = useState({
     backgroundColor: '#414142',
-    color: '#E9EB9E'
+    color: '#E9EB9E',
   });
   const [light, setLight] = useState({
     backgroundColor: '#f8f7b0',
@@ -47,7 +47,7 @@ function App() {
       }
     }
     >
-      <AuthProvider>
+      <AuthProvider checked={checked}>
         <Nav
           handleSwitch={handleSwitch}
           checked={checked}
@@ -71,7 +71,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/register" element={<Register />} />
           <Route path="/allcategories" element={<AllCategories />} />
-          <Route path="/perfil" element={<Perfil />} />
+          <Route path="/perfil" element={<Perfil checked={checked}/>} />
           <Route path="/buscador/:libro/:id" element={<InfoLibro />}/>
         </Routes>
         <Footer />
